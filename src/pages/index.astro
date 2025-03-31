@@ -5,29 +5,256 @@ import "98.css";
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const tabs = document.querySelectorAll("[role=tab]");
+        const panels = document.querySelectorAll("[role=tabpanel]");
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            // Remove aria-selected from all tabs
+            tabs.forEach((t) => t.setAttribute("aria-selected", "false"));
+            // Hide all panels
+            panels.forEach((p) => (p.style.display = "none"));
+
+            // Set selected tab
+            tab.setAttribute("aria-selected", "true");
+            // Show corresponding panel
+            panels[index].style.display = "block";
+          });
+        });
+      });
+    </script>
     <style>
       body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
+        margin: 2rem;
+        box-sizing: border-box;
+        background-color: #4f7aa8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
+
+      .container {
+        position: relative;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .window {
+        background-color: #e1e1e1;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
       .title-bar {
         height: 2rem;
+        padding: 0 0.5rem;
+        background-color: #c0c0c0;
+        border-bottom: 2px solid #a0a0a0;
       }
+
       .title-bar-text {
-        padding-left: 0.5rem;
+        font-weight: bold;
       }
-      .window {
-        height: calc(100% - 6px);
+
+      .window-body {
+        font-size: 16px;
+        padding: 1rem;
+        overflow: auto;
+      }
+
+      .body-left,
+      .body-right,  
+      .body-tabs {
+        border-left: 2px solid #404040;
+        border-top: 2px solid #404040;
+        border-right: 2px solid #f4f4f4;
+        border-bottom: 2px solid #f4f4f4;
+      }
+
+      .body-left,
+      .body-tabs {
+        background-color: #f4f4f4;
+      }
+
+      .left-section {
+        width: 50%;
+        flex: 0.75;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .icon-container {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1rem;
+      }
+
+      .icons {
+        width: 40px;
+        height: 40px;
+        padding: 1rem;
+      }
+
+      .img-contain {
+        justify-content: center;
+        display: flex;
+      }
+
+      .image {
+        width: 70%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .two {
+        flex: 1.5;
+        width: 50%;
+        height: 50rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .body-tabs {
+        background-color: ;
+      }
+
+      menu {
+        display: flex;
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+      }
+
+      [role="tab"] {
+        cursor: pointer;
+        padding: 5px 10px;
+        background: lightgray;
+        border-radius: 4px;
+      }
+
+      [role="tab"][aria-selected="true"] {
+        background: #b6b6b6;
+      }
+
+      [role="tabpanel"] {
+        display: none;
+      }
+
+      [role="tabpanel"]:first-of-type {
+        display: block;
+      }
+
+      .links {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      a {
+        padding-right: .5rem;
       }
     </style>
   </head>
   <body>
-    <div class="window">
-      <div class="title-bar">
-        <div class="title-bar-text">PHL CODE CLUB</div>
+    <div class="container">
+      <div class="left-section">
+        <div class="icon-container">
+          <img class="icons" src="./public/recycle.png" />
+          <img class="icons" src="./public/internet.png" />
+        </div>
+        <div class="window one">
+          <div class="title-bar">
+            <div class="title-bar-text">image.png</div>
+            <div class="title-bar-controls">
+              <button aria-label="Minimize"></button>
+              <button aria-label="Maximize"></button>
+              <button aria-label="Close"></button>
+            </div>
+          </div>
+          <div class="window-body body-left">
+            <div class="img-contain">
+              <img class="image" src="./public/computer.png" />
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="window-body"></div>
+
+      <div class="window two">
+        <div class="title-bar">
+          <div class="title-bar-text">note pad</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body contain body-right">
+          <div>
+            <h1>PHL CODE.CLUB</h1>
+            <menu role="tablist">
+              <li role="tab" aria-selected="true">
+                <a href="#">who we are</a>
+              </li>
+              <li role="tab"><a href="#">about</a></li>
+              <li role="tab"><a href="#">why join</a></li>
+            </menu>
+
+            <div class="window" role="tabpanel">
+              <div class="window-body body-tabs">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </p>
+              </div>
+            </div>
+            <div class="window" role="tabpanel">
+              <div class="window-body body-tabs">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </p>
+              </div>
+            </div>
+            <div class="window" role="tabpanel">
+              <div class="window-body body-tabs">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2>social links</h2>
+            <a href="">discord</a>
+            <a href="">meetup</a>
+            <a href="">email</a>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
