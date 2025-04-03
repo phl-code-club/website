@@ -1,5 +1,10 @@
+@font-face {
+  font-family: kode-mono;
+  src: url(fonts/kode-mono-variable.woff2);
+}
+
 body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
   display: block;
 }

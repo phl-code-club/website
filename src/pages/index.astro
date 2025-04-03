@@ -1,5 +1,9 @@
 ---
 import "98.css";
+import keyboard from "../assets/keyboard.png";
+import calendar from "../assets/calendar.png";
+import email from "../assets/email.png";
+import { Image } from "astro:assets";
 ---
 
 <!doctype html>
@@ -28,6 +32,11 @@ import "98.css";
       });
     </script>
     <style>
+      @font-face {
+        font-family: "KodeMono";
+        src: url("/fonts/kode-mono-variable.woff2") format("woff2");
+      }
+
       body {
         margin: 2rem;
         box-sizing: border-box;
@@ -69,7 +78,8 @@ import "98.css";
       }
 
       .body-left,
-      .body-right {
+      .body-right,
+      .body-tabs {
         border-left: 2px solid #404040;
         border-top: 2px solid #404040;
         border-right: 2px solid #f4f4f4;
@@ -98,14 +108,16 @@ import "98.css";
 
       .icon-container {
         display: flex;
-        flex-direction: column;
+        justify-content: space-evenly;
         padding-bottom: 1rem;
       }
-
+      .icon-container > a {
+        text-decoration: none;
+      }
       .icons {
         width: 40px;
         height: 40px;
-        padding: 1rem;
+        padding: 0.4rem;
       }
 
       .img-contain {
@@ -128,12 +140,11 @@ import "98.css";
       }
 
       .body-tabs {
-        background-color: ;
+        background-color:;
       }
 
       menu {
         display: flex;
-        gap: 10px;
         list-style: none;
         padding: 0;
       }
@@ -164,8 +175,25 @@ import "98.css";
         gap: 10px;
       }
 
-      a {
-        padding-right: .5rem;
+      .organizers {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+      }
+
+      .icon-text {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: black;
+      }
+
+      .organizers > div {
+        padding: 0 0.5rem;
+      }
+
+      p {
+        font-family: "KodeMono";
       }
     </style>
   </head>
@@ -173,8 +201,18 @@ import "98.css";
     <div class="container">
       <div class="left-section">
         <div class="icon-container">
-          <img class="icons" src="./public/recycle.png" />
-          <img class="icons" src="./public/internet.png" />
+          <a href="https://discord.gg/apqk9DHcyw" target="_blank">
+            <Image src={keyboard} alt="keyboard icon" class="icons" />
+            <p class="icon-text">Discord</p>
+          </a>
+          <a href="https://meetup.com/phl-code-club/" target="_blank">
+            <Image src={calendar} alt="calendar icon" class="icons" />
+            <p class="icon-text">Meetup</p>
+          </a>
+          <a href="mailto://info@phlcode.club" target="_blank">
+            <Image src={email} alt="email icon" class="icons" />
+            <p class="icon-text">Email</p>
+          </a>
         </div>
         <div class="window one">
           <div class="title-bar">
@@ -206,58 +244,63 @@ import "98.css";
           <div>
             <h1>PHL CODE.CLUB</h1>
             <menu role="tablist">
-              <li role="tab" aria-selected="true">
+              <li role="tab" aria-selected="true"><a href="#">about</a></li>
+              <li role="tab">
                 <a href="#">who we are</a>
               </li>
-              <li role="tab"><a href="#">about</a></li>
               <li role="tab"><a href="#">why join</a></li>
             </menu>
 
             <div class="window" role="tabpanel">
               <div class="window-body body-tabs">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
+                  <b>PHL Code Club</b> aims to break the mold of the normal "Someone
+                  comes and gives a talk" kind of meetups. Not that those aren't
+                  great (They are, Graham loves talking), but we want to create a
+                  more interactive space. We focus on coding challenges, project
+                  showcases, and hands on workshops.
                 </p>
               </div>
             </div>
             <div class="window" role="tabpanel">
               <div class="window-body body-tabs">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </p>
+                <h3 style="margin: 1rem 0;">Organizers</h3>
+                <div class="organizers">
+                  <div>
+                    <h4 style="margin: 1rem 0;">Christina</h4>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Adipisci cupiditate veniam tempore obcaecati incidunt
+                      rerum aut repellendus. Doloremque, iusto. Iusto rerum
+                      repudiandae obcaecati assumenda illum deserunt similique,
+                      excepturi deleniti praesentium!
+                    </p>
+                  </div>
+                  <div>
+                    <h4 style="margin: 1rem 0;">Graham</h4>
+                    <p>
+                      Graham is an all around computer nerd. What started out as
+                      a love of video games, moved into learning how to build
+                      computers and getting interested in how they work, to
+                      learning to code. Now a software engineer, he aims to
+                      share his love of computing, especially the terminal, and
+                      continue learning from everyone he meets.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="window" role="tabpanel">
               <div class="window-body body-tabs">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                  Our goal is to encourage people to attend no matter your
+                  experience. We aim to teach and engage with our members so
+                  everyone comes out learning something. If that sounds like
+                  something you are interested in, please join our Discord and
+                  Meetup group.
                 </p>
               </div>
             </div>
-          </div>
-
-          <div>
-            <h2>social links</h2>
-            <a href="">discord</a>
-            <a href="">meetup</a>
-            <a href="">email</a>
           </div>
         </div>
       </div>
