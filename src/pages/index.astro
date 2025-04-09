@@ -40,7 +40,7 @@ import { Image } from "astro:assets";
       body {
         margin: 2rem;
         box-sizing: border-box;
-        background-color: #4f7aa8;
+        background-color: #cdf1ff;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -55,23 +55,26 @@ import { Image } from "astro:assets";
       }
 
       .window {
-        background-color: #e1e1e1;
+        background-color: #9991d1;
         border-radius: 4px;
         overflow: hidden;
       }
 
-      .title-bar {
+      body .title-bar {
         height: 2rem;
         padding: 0 0.5rem;
-        background-color: #c0c0c0;
         border-bottom: 2px solid #a0a0a0;
+        background: linear-gradient(90deg, rgb(37, 5, 131), #5a32d3) !important;
       }
+
 
       .title-bar-text {
         font-weight: bold;
+        color: white;
       }
 
       .window-body {
+        background-color: #dad6ef;
         font-size: 16px;
         padding: 1rem;
         overflow: auto;
@@ -95,7 +98,7 @@ import { Image } from "astro:assets";
 
       .body-left,
       .body-tabs {
-        background-color: #f4f4f4;
+        background-color: #f2f0f9;
       }
 
       .left-section {
@@ -215,7 +218,7 @@ import { Image } from "astro:assets";
           </a>
         </div>
         <div class="window one">
-          <div class="title-bar">
+          <div class="title-bar" id="bar-color">
             <div class="title-bar-text">image.png</div>
             <div class="title-bar-controls">
               <button aria-label="Minimize"></button>
@@ -232,7 +235,7 @@ import { Image } from "astro:assets";
       </div>
 
       <div class="window two">
-        <div class="title-bar">
+        <div class="title-bar" id="bar-color">
           <div class="title-bar-text">note pad</div>
           <div class="title-bar-controls">
             <button aria-label="Minimize"></button>
