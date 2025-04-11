@@ -40,7 +40,7 @@ import { Image } from "astro:assets";
       body {
         margin: 2rem;
         box-sizing: border-box;
-        background-color: #cdf1ff;
+        background-color: #bfdaf4;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -55,7 +55,7 @@ import { Image } from "astro:assets";
       }
 
       .window {
-        background-color: #9991d1;
+        background-color: #a49cdc;
         border-radius: 4px;
         overflow: hidden;
       }
@@ -63,7 +63,7 @@ import { Image } from "astro:assets";
       body .title-bar {
         height: 2rem;
         padding: 0 0.5rem;
-        border-bottom: 2px solid #a0a0a0;
+        border-bottom: 2px solid #ffffff;
         background: linear-gradient(90deg, rgb(60, 5, 131), #7832d3) !important;
       }
 
@@ -74,7 +74,7 @@ import { Image } from "astro:assets";
       }
 
       .window-body {
-        background-color: #dad6ef;
+        background-color: #e6e3ff;
         font-size: 16px;
         padding: 1rem;
         overflow: auto;
@@ -133,6 +133,17 @@ import { Image } from "astro:assets";
         height: 100%;
         object-fit: contain;
         padding: 4rem;
+      }   
+      
+      .image-logo {
+        width: 40%;
+        height: 100%;
+        object-fit: contain;
+        padding: 3rem;
+      }
+
+      .one {
+        margin-bottom: 1rem;
       }
 
       .two {
@@ -141,6 +152,10 @@ import { Image } from "astro:assets";
         height: 50rem;
         display: flex;
         flex-direction: column;
+      }
+
+      .three {
+        width: 70%;
       }
 
       .body-tabs {
@@ -156,12 +171,13 @@ import { Image } from "astro:assets";
       [role="tab"] {
         cursor: pointer;
         padding: 5px 10px;
-        background: lightgray;
+        background: #410a88;
         border-radius: 4px;
       }
 
       [role="tab"][aria-selected="true"] {
-        background: #b6b6b6;
+        background: #a59fc7;
+        color: white;
       }
 
       [role="tabpanel"] {
@@ -170,6 +186,10 @@ import { Image } from "astro:assets";
 
       [role="tabpanel"]:first-of-type {
         display: block;
+      }
+
+      menu[role=tablist]>li>a {
+        color: white;
       }
 
       .links {
@@ -198,7 +218,13 @@ import { Image } from "astro:assets";
 
       p {
         font-family: "KodeMono";
+        font-weight: 400;
       }
+
+      button {
+        background: white;
+      }
+
     </style>
   </head>
   <body>
@@ -220,7 +246,7 @@ import { Image } from "astro:assets";
         </div>
         <div class="window one">
           <div class="title-bar" id="bar-color">
-            <div class="title-bar-text">image.png</div>
+            <div class="title-bar-text">retro_computer.png</div>
             <div class="title-bar-controls">
               <button aria-label="Minimize"></button>
               <button aria-label="Maximize"></button>
@@ -230,6 +256,22 @@ import { Image } from "astro:assets";
           <div class="window-body body-left">
             <div class="img-contain">
               <img class="image" src="./public/retro-computer.png" />
+            </div>
+          </div>
+        </div>        
+        
+        <div class="window three">
+          <div class="title-bar" id="bar-color">
+            <div class="title-bar-text">phl_code_clug_logo.gif</div>
+            <div class="title-bar-controls">
+              <button aria-label="Minimize"></button>
+              <button aria-label="Maximize"></button>
+              <button aria-label="Close"></button>
+            </div>
+          </div>
+          <div class="window-body body-left">
+            <div class="img-contain">
+              <img class="image-logo" src="./public/PhlCodeClub.gif" />
             </div>
           </div>
         </div>
@@ -248,11 +290,15 @@ import { Image } from "astro:assets";
           <div>
             <h1>phl code.club</h1>
             <menu role="tablist">
-              <li role="tab" aria-selected="true"><a href="#">about</a></li>
-              <li role="tab">
+              <li role="tab" class="tab" aria-selected="true">
+                <a href="#">about</a>
+              </li>
+              <li role="tab" class="tab">
                 <a href="#">who we are</a>
               </li>
-              <li role="tab"><a href="#">why join</a></li>
+              <li role="tab" class="tab">
+                <a href="#">why join</a>
+              </li>
             </menu>
 
             <div class="window" role="tabpanel">
