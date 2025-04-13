@@ -9,6 +9,7 @@ import { Image } from "astro:assets";
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const tabs = document.querySelectorAll("[role=tab]");
@@ -64,9 +65,8 @@ import { Image } from "astro:assets";
         height: 2rem;
         padding: 0 0.5rem;
         border-bottom: 2px solid #ffffff;
-        background: linear-gradient(90deg, rgb(60, 5, 131), #7832d3) !important;
+        background: linear-gradient(90deg, rgb(60, 5, 131), #7832d3);
       }
-
 
       .title-bar-text {
         font-weight: bold;
@@ -90,8 +90,8 @@ import { Image } from "astro:assets";
       }
 
       .body-tabs {
-        border-left: 2px solid #404040;
-        border-top: 2px solid #404040;
+        border-left: 2px solid #270c34;
+        border-top: 2px solid #270c34;
         border-right: 2px solid #e1e1e1;
         border-bottom: 2px solid #e1e1e1;
       }
@@ -133,8 +133,8 @@ import { Image } from "astro:assets";
         height: 100%;
         object-fit: contain;
         padding: 4rem;
-      }   
-      
+      }
+
       .image-logo {
         width: 40%;
         height: 100%;
@@ -156,6 +156,20 @@ import { Image } from "astro:assets";
 
       .three {
         width: 70%;
+        background-color: #262626;
+      }
+
+      .three > .window-body {
+        background-color: #000000;
+        border-left: 2px solid #404040;
+        border-top: 2px solid #404040;
+        border-right: 2px solid #f4f4f4;
+        border-bottom: 2px solid #f4f4f4;
+        height: 10rem;
+      }
+
+      body .three .title-bar {
+        background: #333333;
       }
 
       .body-tabs {
@@ -188,7 +202,7 @@ import { Image } from "astro:assets";
         display: block;
       }
 
-      menu[role=tablist]>li>a {
+      menu[role="tablist"] > li > a {
         color: white;
       }
 
@@ -224,7 +238,6 @@ import { Image } from "astro:assets";
       button {
         background: white;
       }
-
     </style>
   </head>
   <body>
@@ -258,11 +271,11 @@ import { Image } from "astro:assets";
               <img class="image" src="./public/retro-computer.png" />
             </div>
           </div>
-        </div>        
-        
+        </div>
+
         <div class="window three">
           <div class="title-bar" id="bar-color">
-            <div class="title-bar-text">phl_code_clug_logo.gif</div>
+            <div class="title-bar-text">phl_code_club_logo.gif</div>
             <div class="title-bar-controls">
               <button aria-label="Minimize"></button>
               <button aria-label="Maximize"></button>
@@ -271,7 +284,13 @@ import { Image } from "astro:assets";
           </div>
           <div class="window-body body-left">
             <div class="img-contain">
-              <img class="image-logo" src="./public/PhlCodeClub.gif" />
+                <pre style="background-color: #000; color: #fff; box-shadow: none;   white-space: pre;">
+                  _____       _            ___    _____           _         _   
+                  |     |___ _| |___    ___|  _|  |     |___ ___ _| |_ _ ___| |_ 
+                  |   --| . | . | -_|  | . |  _|  |   --| . |   | . | | |  _|  _|
+                  |_____|___|___|___|  |___|_|    |_____|___|_|_|___|___|___|_|  
+                                                                                 
+              </pre>
             </div>
           </div>
         </div>
