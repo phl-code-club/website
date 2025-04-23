@@ -225,6 +225,42 @@ import { Image } from "astro:assets";
         font-family: KodeMono;
         color: var(--colors-violet);
       }
+
+      @media screen and (max-width: 1375px) {
+        .container {
+          flex-direction: column;
+          align-content: center;
+        }
+
+        .left-section {
+          width: 80%;
+        }
+
+        .two {
+          width: 80%;
+        }
+
+        pre {
+          font-size: medium;
+        }
+      }
+      @media screen and (max-width: 750px) {
+        .left-section {
+          width: 95%;
+        }
+
+        .two {
+          width: 95%;
+        }
+        pre {
+          font-size: small;
+        }
+      }
+      @media screen and (max-width: 709px) {
+        pre {
+          font-size: small;
+        }
+      }
     </style>
   </head>
   <body>
@@ -276,7 +312,7 @@ import { Image } from "astro:assets";
           <div class="window-body body-left">
             <div class="img-contain">
               <pre
-                style="background-color: #000; color: #fff; box-shadow: none;   white-space: pre;">
+                style="background-color: #000; color: #fff; box-shadow: none;   white-space: pre; padding: 1srem;">
   _____       _            ___    _____           _         _
  |     |___ _| |___    ___|  _|  |     |___ ___ _| |_ _ ___| |_
  |   --| . | . | -_|  | . |  _|  |   --| . |   | . | | |  _|  _|
