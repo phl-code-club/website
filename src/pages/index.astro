@@ -10,29 +10,17 @@ import { Image } from "astro:assets";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const tabs = document.querySelectorAll("[role=tab]");
-        const panels = document.querySelectorAll("[role=tabpanel]");
-
-        tabs.forEach((tab, index) => {
-          tab.addEventListener("click", (event) => {
-            event.preventDefault();
-
-            // Remove aria-selected from all tabs
-            tabs.forEach((t) => t.setAttribute("aria-selected", "false"));
-            // Hide all panels
-            panels.forEach((p) => (p.style.display = "none"));
-
-            // Set selected tab
-            tab.setAttribute("aria-selected", "true");
-            // Show corresponding panel
-            panels[index].style.display = "block";
-          });
-        });
-      });
-    </script>
     <style>
+      :root {
+        --colors-purple: #4a306d;
+        --colors-lavender: #ebdefe;
+        --colors-yellow: #ffeb9a;
+        --colors-red: #9e3167;
+        --colors-pink: #ffcfe5;
+        --colors-blue: #215785;
+        --colors-cyan: #d4e5f6;
+        --colors-violet: #7832d3;
+      }
       @font-face {
         font-family: "KodeMono";
         src: url("/fonts/kode-mono-variable.woff2") format("woff2");
@@ -41,7 +29,7 @@ import { Image } from "astro:assets";
       body {
         margin: 2rem;
         box-sizing: border-box;
-        background-color: #bfdaf4;
+        background-color: var(--colors-cyan);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -56,7 +44,7 @@ import { Image } from "astro:assets";
       }
 
       .window {
-        background-color: #a49cdc;
+        background-color: var(--colors-lavender);
         border-radius: 4px;
         overflow: hidden;
       }
@@ -65,7 +53,11 @@ import { Image } from "astro:assets";
         height: 2rem;
         padding: 0 0.5rem;
         border-bottom: 2px solid #ffffff;
-        background: linear-gradient(90deg, rgb(60, 5, 131), #7832d3);
+        background: linear-gradient(
+          90deg,
+          var(--colors-purple),
+          var(--colors-violet)
+        );
       }
 
       .title-bar-text {
@@ -74,7 +66,7 @@ import { Image } from "astro:assets";
       }
 
       .window-body {
-        background-color: #e6e3ff;
+        background-color: var(--colors-lavender);
         font-size: 16px;
         padding: 1rem;
         overflow: auto;
@@ -149,7 +141,7 @@ import { Image } from "astro:assets";
       .two {
         flex: 1.5;
         width: 50%;
-        height: 50rem;
+        height: clamp(500px, 80dvh, 70rem);
         display: flex;
         flex-direction: column;
       }
@@ -180,7 +172,7 @@ import { Image } from "astro:assets";
         display: inline-block;
         width: 10px;
         animation: blink 1s step-start infinite;
-        font-weight: 600
+        font-weight: 600;
       }
 
       @keyframes blink {
@@ -193,30 +185,6 @@ import { Image } from "astro:assets";
         display: flex;
         list-style: none;
         padding: 0;
-      }
-
-      [role="tab"] {
-        cursor: pointer;
-        padding: 5px 10px;
-        background: #410a88;
-        border-radius: 4px;
-      }
-
-      [role="tab"][aria-selected="true"] {
-        background: #a59fc7;
-        color: white;
-      }
-
-      [role="tabpanel"] {
-        display: none;
-      }
-
-      [role="tabpanel"]:first-of-type {
-        display: block;
-      }
-
-      menu[role="tablist"] > li > a {
-        color: white;
       }
 
       .links {
@@ -251,6 +219,12 @@ import { Image } from "astro:assets";
       button {
         background: white;
       }
+
+      .name {
+        margin: 1rem 0;
+        font-family: KodeMono;
+        color: var(--colors-violet);
+      }
     </style>
   </head>
   <body>
@@ -281,7 +255,11 @@ import { Image } from "astro:assets";
           </div>
           <div class="window-body body-left">
             <div class="img-contain">
-              <img class="image" alt="phl code club logo" src="./public/phl-badge.svg" />
+              <img
+                class="image"
+                alt="phl code club logo"
+                src="./public/phl-badge-color.svg"
+              />
             </div>
           </div>
         </div>
@@ -299,15 +277,14 @@ import { Image } from "astro:assets";
             <div class="img-contain">
               <pre
                 style="background-color: #000; color: #fff; box-shadow: none;   white-space: pre;">
-  _____       _            ___    _____           _         _   
- |     |___ _| |___    ___|  _|  |     |___ ___ _| |_ _ ___| |_ 
+  _____       _            ___    _____           _         _
+ |     |___ _| |___    ___|  _|  |     |___ ___ _| |_ _ ___| |_
  |   --| . | . | -_|  | . |  _|  |   --| . |   | . | | |  _|  _|
- |_____|___|___|___|  |___|_|    |_____|___|_|_|___|___|___|_|  
+ |_____|___|___|___|  |___|_|    |_____|___|_|_|___|___|___|_|
 
  user@phlcode.club:~$> be kind
  user@phlcode.club:~$> dont be not kind
- user@phlcode.club:~$> <span class="input">|</span>     
-                                                      
+ user@phlcode.club:~$> <span class="input">|</span>
               </pre>
             </div>
           </div>
@@ -323,73 +300,50 @@ import { Image } from "astro:assets";
             <button aria-label="Close"></button>
           </div>
         </div>
-        <div class="window-body contain body-right">
-          <div>
-            <h1>about us</h1>
-            <menu role="tablist">
-              <li role="tab" class="tab" aria-selected="true">
-                <a href="#">about</a>
-              </li>
-              <li role="tab" class="tab">
-                <a href="#">who we are</a>
-              </li>
-              <li role="tab" class="tab">
-                <a href="#">why join</a>
-              </li>
-            </menu>
-
-            <div class="window" role="tabpanel">
-              <div class="window-body body-tabs">
-                <p>
-                  <b>PHL Code Club</b> aims to break the mold of the normal "Someone
-                  comes and gives a talk" kind of meetups. Not that those aren't
-                  great (They are, Graham loves talking) - We want to create a more
-                  interactive space with a focus on coding challenges, project showcases,
-                  and hands on workshops.
-                </p>
-              </div>
-            </div>
-            <div class="window" role="tabpanel">
-              <div class="window-body body-tabs">
-                <h3 style="margin: 1rem 0;">Organizers</h3>
-                <div class="organizers">
-                  <div>
-                    <h4 style="margin: 1rem 0;">Christina</h4>
-                    <p>
-                      Chris' first experience with coding came from breaking
-                      Tumblr themes until she was creating custom layouts.
-                      Fast-forward, working in IT and troubleshooting computer
-                      issues, her love for problem-solving grew. Now, she
-                      combines creativity and technical skills to build
-                      beautiful & functional UIs. She hopes to create an
-                      inclusive space to share her passion for coding.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 style="margin: 1rem 0;">Graham</h4>
-                    <p>
-                      Graham is an all around computer nerd. What started out as
-                      a love of video games, moved into learning how to build
-                      computers and getting interested in how they work, to
-                      learning to code. Now a software engineer, he aims to
-                      share his love of computing, especially the terminal, and
-                      continue learning from everyone he meets.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="window" role="tabpanel">
-              <div class="window-body body-tabs">
-                <p>
-                  Our goal is to encourage people to attend no matter their
-                  background. We aim to teach and engage with our members so
-                  everyone comes out learning something. If that sounds like
-                  something you are interested in, please join our Discord and
-                  Meetup group.
-                </p>
-              </div>
-            </div>
+        <div style="overflow: hidden" class="window-body contain body-right">
+          <div
+            style="height: calc(100% - 2rem - 16px); overflow: scroll"
+            class="window-body body-tabs"
+          >
+            <h2 style="margin: 1rem 0;">About</h2>
+            <p>
+              <b>PHL Code Club</b> aims to break the mold of the normal "Someone
+              comes and gives a talk" kind of meetups. Not that those aren't great
+              (They are, Graham loves talking) - We want to create a more interactive
+              space with a focus on coding challenges, project showcases, and hands
+              on workshops.
+            </p>
+            <h2 style="margin: 1rem 0;">Organizers</h2>
+            <h4 class="name">
+              Christina <span aria-hidden="true">ʕ•ᴥ•ʔ</span>
+            </h4>
+            <p>
+              Chris' first experience with coding came from breaking Tumblr
+              themes until she was creating custom layouts. Fast-forward,
+              working in IT and troubleshooting computer issues, her love for
+              problem-solving grew. Now, she combines creativity and technical
+              skills to build beautiful & functional UIs. She hopes to create an
+              inclusive space to share her passion for coding.
+            </p>
+            <h4 class="name">
+              Graham <span aria-hidden="true">ʕ⌐■ᴥ■ʔ</span>
+            </h4>
+            <p>
+              Graham is an all around computer nerd. What started out as a love
+              of video games, moved into learning how to build computers and
+              getting interested in how they work, to learning to code. Now a
+              software engineer, he aims to share his love of computing,
+              especially the terminal, and continue learning from everyone he
+              meets.
+            </p>
+            <h2 style="margin: 1rem 0;">Why Join</h2>
+            <p>
+              Our goal is to encourage people to attend no matter their
+              background. We aim to teach and engage with our members so
+              everyone comes out learning something. If that sounds like
+              something you are interested in, please join our Discord and
+              Meetup group.
+            </p>
           </div>
         </div>
       </div>
