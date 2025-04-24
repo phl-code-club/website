@@ -1,8 +1,10 @@
 ---
 import "98.css";
+import Logo from "../assets/phl-badge-color.svg";
 import keyboard from "../assets/keyboard.png";
 import calendar from "../assets/calendar.png";
 import email from "../assets/email.png";
+import terminal from "../assets/terminal.txt?raw";
 import { Image } from "astro:assets";
 ---
 
@@ -10,7 +12,7 @@ import { Image } from "astro:assets";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <style>
+    <style is:global>
       :root {
         --colors-purple: #4a306d;
         --colors-lavender: #ebdefe;
@@ -20,10 +22,6 @@ import { Image } from "astro:assets";
         --colors-blue: #215785;
         --colors-cyan: #d4e5f6;
         --colors-violet: #7832d3;
-      }
-      @font-face {
-        font-family: "KodeMono";
-        src: url("/fonts/kode-mono-variable.woff2") format("woff2");
       }
 
       body {
@@ -212,7 +210,6 @@ import { Image } from "astro:assets";
       }
 
       p {
-        font-family: "KodeMono";
         font-weight: 400;
       }
 
@@ -222,7 +219,6 @@ import { Image } from "astro:assets";
 
       .name {
         margin: 1rem 0;
-        font-family: KodeMono;
         color: var(--colors-violet);
       }
 
@@ -249,10 +245,18 @@ import { Image } from "astro:assets";
           font-size: medium;
         }
 
-        .one, .three, .icon-container, .two {
+        .one,
+        .three,
+        .icon-container,
+        .two {
           margin-top: 1rem;
         }
+
+        p {
+          font-size: 1.4rem;
+        }
       }
+
       @media screen and (max-width: 750px) {
         .left-section {
           width: 95%;
@@ -297,11 +301,7 @@ import { Image } from "astro:assets";
           </div>
           <div class="window-body body-left">
             <div class="img-contain">
-              <img
-                class="image"
-                alt="phl code club logo"
-                src="/phl-badge-color.svg"
-              />
+              <Logo class="image" />
             </div>
           </div>
         </div>
@@ -318,16 +318,9 @@ import { Image } from "astro:assets";
           <div class="window-body body-left">
             <div class="img-contain">
               <pre
-                style="background-color: #000; color: #fff; box-shadow: none;   white-space: pre; padding: 1rem;">
-  _____       _            ___    _____           _         _
- |     |___ _| |___    ___|  _|  |     |___ ___ _| |_ _ ___| |_
- |   --| . | . | -_|  | . |  _|  |   --| . |   | . | | |  _|  _|
- |_____|___|___|___|  |___|_|    |_____|___|_|_|___|___|___|_|
-
- user@phlcode.club:~$> be kind
- user@phlcode.club:~$> dont be not kind
- user@phlcode.club:~$> <span class="input">|</span>
-              </pre>
+                style="background-color: #000; color: #fff; box-shadow: none;   white-space: pre; padding: 1rem;"
+                set:html={terminal}
+              />
             </div>
           </div>
         </div>

@@ -1,0 +1,8 @@
+  _____       _            ___    _____           _         _
+ |     |___ _| |___    ___|  _|  |     |___ ___ _| |_ _ ___| |_
+ |   --| . | . | -_|  | . |  _|  |   --| . |   | . | | |  _|  _|
+ |_____|___|___|___|  |___|_|    |_____|___|_|_|___|___|___|_|
+
+ user@phlcode.club:~$&gt; be kind
+ user@phlcode.club:~$&gt; dont be not kind
+ user@phlcode.club:~$&gt; <span class="input" data-astro-cid-j7pv25f6="">|</span>
