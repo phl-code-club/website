@@ -4,6 +4,7 @@ import Logo from "../assets/phl-badge-color.svg";
 import keyboard from "../assets/keyboard.png";
 import calendar from "../assets/calendar.png";
 import email from "../assets/email.png";
+import slides from "../assets/slides.png";
 import terminal from "../assets/terminal.txt?raw";
 import { Image } from "astro:assets";
 ---
@@ -288,6 +289,10 @@ import { Image } from "astro:assets";
           <a href="mailto://info@phlcode.club" target="_blank">
             <Image src={email} alt="email icon" class="icons" />
             <p class="icon-text">Email</p>
+          </a>
+          <a href="/slides">
+            <Image src={slides} alt="slides icon" class="icons" />
+            <p class="icon-text">Slides</p>
           </a>
         </div>
         <div class="window one">
