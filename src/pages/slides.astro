@@ -1,0 +1,99 @@
+---
+import "98.css";
+// import Logo from "../assets/phl-badge-color.svg";
+// import keyboard from "../assets/keyboard.png";
+// import calendar from "../assets/calendar.png";
+// import email from "../assets/email.png";
+// import terminal from "../assets/terminal.txt?raw";
+// import { Image } from "astro:assets";
+import { readdirSync } from "fs";
+let files = readdirSync("public/slides").filter(str => str.endsWith(".pdf"))
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style is:global>
+      :root {
+        --colors-purple: #4a306d;
+        --colors-lavender: #ebdefe;
+        --colors-yellow: #ffeb9a;
+        --colors-red: #9e3167;
+        --colors-pink: #ffcfe5;
+        --colors-blue: #215785;
+        --colors-cyan: #d4e5f6;
+        --colors-violet: #7832d3;
+      }
+
+      body {
+        margin: 2rem;
+        box-sizing: border-box;
+        background-color: var(--colors-cyan);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        width: 100%
+      }
+
+      .window {
+        background-color: var(--colors-lavender);
+        border-radius: 4px;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      body .title-bar {
+        height: 2rem;
+        padding: 0 0.5rem;
+        border-bottom: 2px solid #ffffff;
+        background: linear-gradient(
+          90deg,
+          var(--colors-purple),
+          var(--colors-violet)
+        );
+      }
+
+      .title-bar-text {
+        font-weight: bold;
+        color: white;
+      }
+
+      .window-body {
+        background-color: var(--colors-lavender);
+        font-size: 16px;
+        padding: 1rem;
+        overflow: auto;
+      }
+
+      .body-left,
+      .body-right,
+      .body-tabs {
+        border-left: 2px solid #404040;
+        border-top: 2px solid #404040;
+        border-right: 2px solid #f4f4f4;
+        border-bottom: 2px solid #f4f4f4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="window">
+        <div class="title-bar" id="bar-color">
+          <div class="title-bar-text">slides</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          {files.map(v => <a href=`/slides/${v}`>{v}</a>)}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
