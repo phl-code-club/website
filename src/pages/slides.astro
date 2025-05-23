@@ -1,13 +1,6 @@
 ---
 import "98.css";
-// import Logo from "../assets/phl-badge-color.svg";
-// import keyboard from "../assets/keyboard.png";
-// import calendar from "../assets/calendar.png";
-// import email from "../assets/email.png";
-// import terminal from "../assets/terminal.txt?raw";
-// import { Image } from "astro:assets";
-import { readdirSync } from "fs";
-let files = readdirSync("public/slides").filter(str => str.endsWith(".pdf"))
+let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true})).map(v => v.replace("/public/slides/", ""))
 ---
 
 <!doctype html>
