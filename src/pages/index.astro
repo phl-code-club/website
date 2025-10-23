@@ -1,6 +1,6 @@
 ---
 import "98.css";
-import Logo from "../assets/phl-badge-color.svg";
+import Logo from "../assets/Frame 21.png";
 import keyboard from "../assets/keyboard.png";
 import calendar from "../assets/calendar.png";
 import email from "../assets/email.png";
@@ -49,8 +49,7 @@ import { Image } from "astro:assets";
       }
 
       body .title-bar {
-        height: 2rem;
-        padding: 0 0.5rem;
+        height: 2rem; 
         border-bottom: 2px solid #ffffff;
         background: linear-gradient(
           90deg,
@@ -60,6 +59,7 @@ import { Image } from "astro:assets";
       }
 
       .title-bar-text {
+       padding: .5rem;
         font-weight: bold;
         color: white;
       }
@@ -93,9 +93,7 @@ import { Image } from "astro:assets";
       }
 
       .left-section {
-        width: 50%;
-        flex: 0.75;
-        height: 60%;
+        width: 50vw;
         display: flex;
         flex-direction: column;
       }
@@ -117,6 +115,9 @@ import { Image } from "astro:assets";
       .img-contain {
         justify-content: center;
         display: flex;
+        width: 100%;
+        max-width: 20em;
+        margin: auto;
       }
 
       .image {
@@ -223,7 +224,7 @@ import { Image } from "astro:assets";
         color: var(--colors-violet);
       }
 
-      @media screen and (max-width: 1375px) {
+      @media screen and (max-width: 1024px) {
         .container {
           flex-direction: column;
           align-content: center;
@@ -348,7 +349,13 @@ import { Image } from "astro:assets";
             are, Graham loves talking) - We want to create a more interactive space
             with a focus on coding challenges, project showcases, and hands on workshops.
           </p>
-          <h2 style="margin: 1rem 0;">Organizers</h2>
+          <h2 style="margin: 1rem 0;">Join Us</h2>
+          <p>
+            Our goal is to encourage people to attend no matter their
+            background. We aim to teach and engage with our members so everyone
+            comes out learning something. If that sounds like something you are
+            interested in, please join our Discord and Meetup group.
+          </p>          <h2 style="margin: 1rem 0;">Organizers</h2>
           <h4 class="name">
             Christina <span aria-hidden="true">ʕ•ᴥ•ʔ</span>
           </h4>
@@ -393,13 +400,6 @@ import { Image } from "astro:assets";
             of Public Health in college, he found a passion for the ways 
             that data can be used to help people on a population level. 
             He hopes to bring this passion to a new community of coders!
-          </p>
-          <h2 style="margin: 1rem 0;">Why Join</h2>
-          <p>
-            Our goal is to encourage people to attend no matter their
-            background. We aim to teach and engage with our members so everyone
-            comes out learning something. If that sounds like something you are
-            interested in, please join our Discord and Meetup group.
           </p>
         </div>
       </div>
