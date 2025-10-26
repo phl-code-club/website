@@ -1,68 +1,93 @@
-# Astro Starter Kit: Blog
+PHL Code Club Website
+Welcome to the official repository for the PHL Code Club website!
 
-```sh
-pnpm create astro@latest -- --template blog
-```
+This project powers our community’s official website — a space for coding enthusiasts, beginners, and mentors to learn, collaborate, and share resources built using the Astro framework.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+🌐 About PHL Code Club
+PHL Code Club is a programming community driven by curiosity, inclusivity, and collaboration.
+We organize coding workshops, local events, and hands‑on open‑source projects to encourage developers of all experience levels.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Our website shares:
 
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+Club news and event updates
 
-Features:
+Educational blog posts and tutorials
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+Team information and coding resources
 
-## 🚀 Project Structure
+Event schedules and community announcements
 
-Inside of your Astro project, you'll see the following folders and files:
+Learn more at phlcodeclub.org.
 
-```text
-├── public/
+🧩 About the Website
+This site is built using Astro — a modern static site builder that combines performance, simplicity, and developer flexibility.
+The site uses the Astro Starter Kit: Blog as its base, customized for the club’s brand and needs.
+
+Key Features
+1.Clean, minimal theme
+
+2.Fast‑loading static site (100/100 Lighthouse score)
+
+3.SEO optimization with OpenGraph & sitemap support
+
+4.Supports Markdown & MDX posts for easy content creation
+
+5.Deployed easily to GitHub Pages / Netlify
+
+📁 Project Structure
+text
+├── public/                # Static assets (images, icons)
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
+│   ├── components/        # Reusable Astro/JS components
+│   ├── content/           # Blog or article markdown files
+│   ├── layouts/           # Page structures and templates
+│   └── pages/             # Static pages (Home, About, Events, etc.)
+├── astro.config.mjs       # Astro project configuration
+├── package.json           # Dependency definitions
+├── tsconfig.json          # TypeScript configuration
+└── README.md              # You're reading this 
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+🧞 Commands
+All commands are run from your terminal at the project root.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Command	Description
+pnpm install	Install dependencies
+pnpm dev	Start local dev server at http://localhost:4321
+pnpm build	Build for production (output → ./dist/)
+pnpm preview	Preview locally before deployment
+pnpm astro ...	Run Astro CLI tools
+pnpm astro -- --help	View CLI help options
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+🛠️ Setup Instructions
+1.Clone the repository
+git clone https://github.com/phl-code-club/website.git
+cd website
 
-Any static assets, like images, can be placed in the `public/` directory.
+2.Install dependencies
+pnpm install
 
-## 🧞 Commands
+3.Start development server
+pnpm dev
 
-All commands are run from the root of the project, from a terminal:
+4.Build for production
+pnpm build
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+Your optimized files will be inside dist/.
 
-## 👀 Want to learn more?
+🤝 Contributing
+We love community contributions!
+You can help improve content, fix bugs, or design new sections.
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Workflow:
 
-## Credit
+1.Fork this repository
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+2.Create a new branch (e.g., update-readme)
+
+3.Make your changes
+
+4.Commit → push → open a Pull Request referencing #3
+
+
+Example commit:
+git commit -m "Added custom README explaining organization and site"
