@@ -1,6 +1,6 @@
 # PHL Code Club
 
-![LOGO](./src/assets/phl-badge-color.svg)
+<a href="https://phlcode.club/" about="_blank"><img alt="PHL Code Club Logo" src="./src/assets/phl-badge-color.svg" width="50%" /></a>
 
 ## What is the PHL Code Club
 
