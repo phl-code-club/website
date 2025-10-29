@@ -100,7 +100,7 @@ import { Image } from "astro:assets";
 
       .left-section {
         width: 100%;
-    max-width: 50rem;
+    max-width: 40rem;
         display: flex;
         flex-direction: column;
       }
@@ -231,18 +231,15 @@ import { Image } from "astro:assets";
         color: var(--colors-violet);
       }
 
-      @media screen and (max-width: 1024px) {
+      @media screen and (max-width: 1100px) {
         .container {
           flex-direction: column;
           align-content: center;
         }
 
-        .left-section {
-          width: 85%;
-        }
-
-        .two {
-          width: 85%;
+        .left-section, .two {
+          max-width: 100%;
+          width: 100%;
         }
 
         .icons {
