@@ -50,6 +50,10 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         );
       }
 
+      .home-button {
+        margin: 1em;
+      }
+
       .title-bar-text {
         font-weight: bold;
         color: white;
@@ -60,6 +64,10 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         font-size: 16px;
         padding: 1rem;
         overflow: auto;
+      }
+
+       .window-body a {
+                color: #000;
       }
 
       .body-left,
@@ -74,6 +82,10 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
   </head>
   <body>
     <div class="container">
+      <div class="home-button">
+      <a href=`/`>back to home</a>
+
+      </div>
       <div class="window">
         <div class="title-bar" id="bar-color">
           <div class="title-bar-text">slides</div>
@@ -84,6 +96,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
           </div>
         </div>
         <div class="window-body">
+          
           {files.map(v => <a href=`/slides/${v}`>{v}</a>)}
         </div>
       </div>
