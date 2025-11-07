@@ -23,7 +23,38 @@ import { Image } from "astro:assets";
         --colors-blue: #215785;
         --colors-cyan: #d4e5f6;
         --colors-violet: #7832d3;
+        --colors-black: #000;
+        --colors-white: #fff;
+        --colors-gray: #262626; 
       }
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--colors-cyan);
+  }
+
+  .window {
+    background-color: var(--colors-lavender);
+  }
+
+  .body-left,
+  .body-tabs {
+    background-color: var(--colors-white);
+  }
+
+  body .three .title-bar {
+    background: var(--colors-gray);
+  }
+  
+  .name {
+    color: var(--colors-violet);
+  }
+
+  .icon-text {
+    color: var(--colors-black)
+  }
+
+}
 
       body {
         margin: 2rem;
@@ -52,7 +83,7 @@ import { Image } from "astro:assets";
 
       body .title-bar {
         height: 2rem;
-        border-bottom: 2px solid #ffffff;
+        border-bottom: 2px solid var(--colors-white);
         background: linear-gradient(
           90deg,
           var(--colors-purple),
@@ -95,12 +126,12 @@ import { Image } from "astro:assets";
 
       .body-left,
       .body-tabs {
-        background-color: #ffffff;
+        background-color: var(--colors-white);
       }
 
       .left-section {
         width: 100%;
-    max-width: 40rem;
+        max-width: 40rem;
         display: flex;
         flex-direction: column;
       }
@@ -112,6 +143,7 @@ import { Image } from "astro:assets";
       }
       .icon-container > a {
         text-decoration: none;
+        text-align: center;
       }
       .icons {
         width: 40px;
@@ -155,11 +187,11 @@ import { Image } from "astro:assets";
 
       .three {
         width: 100%;
-        background-color: #262626;
+        background-color: var(--colors-gray);
       }
 
       .three > .window-body {
-        background-color: #000000;
+        background-color: var(--colors-black);
         border-left: 2px solid #404040;
         border-top: 2px solid #404040;
         border-right: 2px solid #f4f4f4;
@@ -168,11 +200,7 @@ import { Image } from "astro:assets";
       }
 
       body .three .title-bar {
-        background: #333333;
-      }
-
-      .body-tabs {
-        background-color:;
+        background: var(--colors-gray);
       }
 
       .input {
@@ -211,7 +239,6 @@ import { Image } from "astro:assets";
         margin: 0;
         font-size: 1rem;
         font-weight: 600;
-        color: black;
       }
 
       .organizers > div {
@@ -228,7 +255,6 @@ import { Image } from "astro:assets";
 
       .name {
         margin: 1rem 0;
-        color: var(--colors-violet);
       }
 
       @media screen and (max-width: 1100px) {
@@ -277,6 +303,55 @@ import { Image } from "astro:assets";
           padding: 0rem;
         }
       }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+        --dark-body-bg: #28153d;
+        --dark-body-tabs-bg: #19082c;
+        --dark-window-bg: #8d67bf;
+        --dark-three-title-bar-bg: #f0f0f0;
+        --dark-three-title-bar-text: #000;
+        --dark-title-bar-start: #030105;
+        --dark-name: #9c6cda;
+  }
+
+  body {
+    color: var(--colors-white);
+    background-color: var(--dark-body-bg);
+  }
+
+  .body-left,
+  .body-tabs {
+    background-color: var(--dark-body-tabs-bg);
+  }
+
+  .window {
+    background-color: var(--dark-window-bg);
+  }
+
+  .three {
+    background-color: var(--colors-gray);
+  }
+  body .three .title-bar {
+    background: var(--dark-three-title-bar-bg);
+  }
+
+  body .three .title-bar .title-bar-text {
+    color: var(--dark-three-title-bar-text);
+  }
+
+  .title-bar {
+    background: linear-gradient(90deg, var(--dark-title-bar-start), var(--colors-violet));
+  }
+
+  .name {
+    color: var(--dark-name);
+  }
+
+  .icon-text {
+    color: #c6aeff;
+  }
+}
     </style>
   </head>
   <body>
