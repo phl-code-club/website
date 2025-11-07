@@ -7,6 +7,7 @@ import email from "../assets/email.png";
 import slides from "../assets/slides.png";
 import terminal from "../assets/terminal.txt?raw";
 import { Image } from "astro:assets";
+import phlsticker from "../assets/phl-square-sticker.png"
 ---
 
 <!doctype html>
@@ -257,6 +258,11 @@ import { Image } from "astro:assets";
         margin: 1rem 0;
       }
 
+      .logo { 
+        width: 7em;
+        transform: rotate(3deg);
+      }
+
       @media screen and (max-width: 1100px) {
         .container {
           flex-direction: column;
@@ -273,6 +279,9 @@ import { Image } from "astro:assets";
           height: 55px;
         }
 
+        .logo { 
+           width: 10em;
+        }
         pre {
           font-size: medium;
         }
@@ -422,12 +431,15 @@ import { Image } from "astro:assets";
         </div>
         <div class="window-body contain body-right body-tabs">
           <h2 style="margin: 1rem 0;">About</h2>
-          <p>
+        <div style="display: flex; align-items: center">
+         <p>
             <b>PHL Code Club</b> aims to break the mold of the normal "Someone comes
             and gives a talk" kind of meetups. Not that those aren't great (They
             are, Graham loves talking) - We want to create a more interactive space
             with a focus on coding challenges, project showcases, and hands on workshops.
           </p>
+          <Image class="image logo" src={phlsticker} alt="logo" />
+          </div>
           <h2 style="margin: 1rem 0;">Join Us</h2>
           <p>
             Our goal is to encourage people to attend no matter their

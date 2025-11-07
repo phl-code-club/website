@@ -17,6 +17,9 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         --colors-blue: #215785;
         --colors-cyan: #d4e5f6;
         --colors-violet: #7832d3;
+        --colors-black: #000;
+        --colors-white: #fff;
+        --colors-gray: #262626; 
       }
 
       body {
@@ -78,6 +81,62 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         border-right: 2px solid #f4f4f4;
         border-bottom: 2px solid #f4f4f4;
       }
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--colors-cyan);
+  }
+
+  .window {
+    background-color: var(--colors-lavender);
+  }
+
+  .body-left,
+  .body-tabs {
+    background-color: var(--colors-white);
+  }
+
+  .window-body a {
+    color: var(--colors-black);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+        --dark-body-bg: #28153d;
+        --dark-body-tabs-bg: #19082c;
+        --dark-window-bg: #8d67bf;
+        --dark-three-title-bar-bg: #f0f0f0;
+        --dark-three-title-bar-text: #000;
+        --dark-title-bar-start: #030105;
+        --dark-name: #9c6cda;
+  }
+
+  body {
+    color: var(--colors-white);
+    background-color: var(--dark-body-bg);
+  }
+
+  .window-body {
+    background-color: var(--dark-body-tabs-bg);
+  }
+
+  .window {
+    background-color: var(--dark-window-bg);
+  }
+
+  .title-bar {
+    background: linear-gradient(90deg, var(--dark-title-bar-start), var(--colors-violet));
+  }
+
+  .window-body a {
+    color: #c6aeff;
+  }
+
+  a {
+    color: var(--colors-white)
+  }
+}
     </style>
   </head>
   <body>
