@@ -1,6 +1,6 @@
 ---
 import "98.css";
-import Logo from "../assets/Frame 21.png";
+import Logo from "../assets/capywiz.png";
 import keyboard from "../assets/keyboard.png";
 import calendar from "../assets/calendar.png";
 import email from "../assets/email.png";
@@ -172,7 +172,7 @@ import sponsor from "../assets/sponsor.png"
       position: absolute;
       left: 0;
       padding: 0;
-      max-width: 15em;
+      max-width: 20em;
       bottom: 0%;
       z-index: -5;
       margin: 0;
@@ -180,7 +180,7 @@ import sponsor from "../assets/sponsor.png"
 
       .image {
         width: 100%;
-        height: 20dvh;
+        height: 30dvh;
         object-fit: contain;
         padding: 2rem;
       }
@@ -205,7 +205,8 @@ import sponsor from "../assets/sponsor.png"
       }
 
       .three {
-        width: 100%;
+        width: 90%;
+        margin: 0 auto;
         background-color: var(--colors-gray);
       }
 
@@ -215,7 +216,7 @@ import sponsor from "../assets/sponsor.png"
         border-top: 2px solid #404040;
         border-right: 2px solid #f4f4f4;
         border-bottom: 2px solid #f4f4f4;
-        height: 16rem;
+        height: 14rem;
       }
 
       body .three .title-bar {
@@ -281,7 +282,6 @@ import sponsor from "../assets/sponsor.png"
       }
 
       .logo { 
-        width: 7em;
         transform: rotate(3deg);
         height: 12dvh;
       }
@@ -289,13 +289,15 @@ import sponsor from "../assets/sponsor.png"
       pre {
         padding: 0;
       }
-      @media screen and (max-width: 1300px) {
+      @media screen and (min-width: 1300px) {
         .left-section {
           max-width: 36rem;
         }
       }
       @media screen and (max-width: 1100px) {
-
+        .three {
+          width: 100%;
+        }
         body {
           display: flex;
           flex-direction: column-reverse;
@@ -449,7 +451,7 @@ import sponsor from "../assets/sponsor.png"
           <div class="window-body body-left">
             <div class="img-contain">
               <pre
-                style="background-color: #000; color: #fff; box-shadow: none;   white-space: pre;"
+                  style="background-color: #000; color: #fff; box-shadow: none; white-space: pre; font-size: .85em;"
                 set:html={terminal}
               />
             </div>
@@ -467,7 +469,7 @@ import sponsor from "../assets/sponsor.png"
           </div>
         </div>
         <div class="window-body contain body-right body-tabs">
-          <h2 style="margin: 1rem 0;">About</h2>
+          <h2 style="margin: 1rem 0 0;">About</h2>
         <div style="display: flex; align-items: center">
          <p>
             <b>PHL Code Club</b> aims to break the mold of the normal "Someone comes
