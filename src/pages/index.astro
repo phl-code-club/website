@@ -290,6 +290,12 @@ import sponsor from "../assets/sponsor.png"
       pre {
         padding: 0;
       }
+
+      .four .window-body {
+        height: 20rem;
+      }
+
+
       @media screen and (min-width: 1300px) {
         .left-section {
           max-width: 36rem;
@@ -341,6 +347,10 @@ import sponsor from "../assets/sponsor.png"
 
         p {
           font-size: 1.4rem;
+        }
+
+        .two {
+          height: 100%;
         }
       }
 
@@ -436,10 +446,10 @@ import sponsor from "../assets/sponsor.png"
             <Image src={slides} alt="slides icon" class="icons" />
             <p class="icon-text">Slides</p>
           </a>
-          <!-- <a class="sponsor" href="/slides"> -->
-          <!--   <Image src={sponsor} alt="sponsor icon" class="icons" /> -->
-          <!--   <p class="icon-text">Sponsors</p> -->
-          <!-- </a> -->
+          <a class="sponsor" href="/slides">
+            <Image src={sponsor} alt="sponsor icon" class="icons" />
+            <p class="icon-text">Sponsors</p>
+          </a>
         </div>
         <div class="window three">
           <div class="title-bar" id="bar-color">
@@ -555,6 +565,21 @@ import sponsor from "../assets/sponsor.png"
           </p>
         </div>
       </div>
+
+      <!-- <div class="window four"> -->
+      <!--   <div class="title-bar" id="bar-color"> -->
+      <!--     <div class="title-bar-text">note pad</div> -->
+      <!--     <div class="title-bar-controls"> -->
+      <!--       <button aria-label="Minimize"></button> -->
+      <!--       <button aria-label="Maximize"></button> -->
+      <!--       <button aria-label="Close"></button> -->
+      <!--     </div> -->
+      <!--   </div> -->
+      <!--   <div class="window-body contain body-right body-tabs"> -->
+      <!--   <h1>PHL Code Club Sponsors</h1>  -->
+      <!--   </div> -->
+      <!-- </div> -->
+
     </div>
   </body>
 </html>
