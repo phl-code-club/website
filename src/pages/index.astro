@@ -4,6 +4,8 @@ import Logo from "../assets/capywiz.png";
 import keyboard from "../assets/keyboard.png";
 import calendar from "../assets/calendar.png";
 import email from "../assets/email.png";
+import resilient from "../assets/resilient.png";
+import posthog from "../assets/posthog.png";
 import slides from "../assets/slides.png";
 import terminal from "../assets/terminal.txt?raw";
 import { Image } from "astro:assets";
@@ -153,7 +155,9 @@ import sponsor from "../assets/sponsor.png"
         height: 2rem;
         padding: 0.9rem;
       }
-
+      .sponsor {
+        cursor: pointer;
+      }
       .sponsor .icons {
         width: 3rem;
         height: 3rem;
@@ -183,6 +187,17 @@ import sponsor from "../assets/sponsor.png"
         height: 30dvh;
         object-fit: contain;
         padding: 2rem;
+      }
+
+      .sponsors {
+        width: 40%;
+        height: 18em;
+        object-fit: contain;
+        margin: 1rem 0;
+      }
+
+      .sponsors.posthog {
+        background: #fff;
       }
 
       .image-logo {
@@ -292,7 +307,31 @@ import sponsor from "../assets/sponsor.png"
       }
 
       .four .window-body {
-        height: 20rem;
+        height: 75dvh;
+        padding: 0;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .sponsors-container {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .modal {
+        position: fixed;
+        display: none;
+         z-index: 1; /* Sit on top */
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         width: 90dvw; /* Full width */
+         overflow: none; /* Enable scroll if needed */
+         background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+         justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
       }
 
 
@@ -324,12 +363,26 @@ import sponsor from "../assets/sponsor.png"
           max-width: 100%;
           width: 100%;
         }
-
+        
+        .four .window-body {
+          height: 80dvh;
+          justify-content: center;
+        }
+        .sponsor .icons, 
         .icons {
           width: 55px;
           height: 55px;
+          padding: .9rem;
         }
 
+        .sponsors {
+          width: 100%;
+        }
+
+        .sponsors-container {
+          flex-direction: column;
+          align-content: center;
+        }
         .logo { 
           width: 10em;
           height: 10dvh;
@@ -421,7 +474,27 @@ import sponsor from "../assets/sponsor.png"
     color: #D4E6F3;
   }
 }
-    </style>
+</style>
+  <script>
+    const modal = document.getElementsByClassName("modal")[0]
+    const button = document.getElementsByClassName("close")[0]
+    const sponsorButton = document.getElementsByClassName("sponsor")[0]
+
+    sponsorButton.onclick = () => {
+      modal.style.display = "block"
+    }
+
+    button.onclick = () => {
+      modal.style.display = "none"
+    }
+
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+  </script>
   </head>
   <body>
             <div class="background-img img-contain">
@@ -446,10 +519,10 @@ import sponsor from "../assets/sponsor.png"
             <Image src={slides} alt="slides icon" class="icons" />
             <p class="icon-text">Slides</p>
           </a>
-          <a class="sponsor" href="/slides">
+          <div class="sponsor">
             <Image src={sponsor} alt="sponsor icon" class="icons" />
             <p class="icon-text">Sponsors</p>
-          </a>
+          </div>
         </div>
         <div class="window three">
           <div class="title-bar" id="bar-color">
@@ -566,19 +639,23 @@ import sponsor from "../assets/sponsor.png"
         </div>
       </div>
 
-      <!-- <div class="window four"> -->
-      <!--   <div class="title-bar" id="bar-color"> -->
-      <!--     <div class="title-bar-text">note pad</div> -->
-      <!--     <div class="title-bar-controls"> -->
-      <!--       <button aria-label="Minimize"></button> -->
-      <!--       <button aria-label="Maximize"></button> -->
-      <!--       <button aria-label="Close"></button> -->
-      <!--     </div> -->
-      <!--   </div> -->
-      <!--   <div class="window-body contain body-right body-tabs"> -->
-      <!--   <h1>PHL Code Club Sponsors</h1>  -->
-      <!--   </div> -->
-      <!-- </div> -->
+      <div class="window four modal">
+        <div class="title-bar" id="bar-color">
+          <div class="title-bar-text">note pad</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button class="close" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body contain body-right body-tabs">
+        <h4>PHL Code Club Sponsors</h4>
+        <div class="sponsors-container">
+        <Image src={resilient} alt="resilient coders logo" class="sponsors" />
+        <Image src={posthog} alt="posthog logo" class="sponsors posthog" />
+        </div>
+        </div>
+      </div>
 
     </div>
   </body>
