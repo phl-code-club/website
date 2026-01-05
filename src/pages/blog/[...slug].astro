@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import { getEntry, render } from 'astro:content';
+
+export async function getStaticPaths() {
+    const posts = await getCollection("blog");
+    return posts.map(p => ({
+        params: {slug: p.id},
+        props: p
+    }))
+}
+
+const post = Astro.props;
+const { Content, headings } = await render(post);
+---
+<p>Published on: {post.data.pubDate.toDateString()}</p>
+<Content />

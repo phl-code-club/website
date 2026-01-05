@@ -1,6 +1,14 @@
 ---
 import "98.css";
-let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true})).map(v => v.replace("/public/slides/", ""))
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+const posts = await getCollection('blog');
 ---
 
 <!doctype html>
@@ -155,8 +163,11 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
           </div>
         </div>
         <div class="window-body">
-          
-          {files.map(v => <a href=`/slides/${v}`>{v}</a>)}
+          <ul>
+            {posts.map(post => (
+              <li><a href={`/blog/${post.id}`}>{post.data.title}</a></li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
