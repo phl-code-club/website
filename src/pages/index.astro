@@ -350,7 +350,15 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
          justify-content: center; /* Center horizontally */
         align-items: center; /* Center vertically */
       }
-
+      .modal-open {
+        overflow-y: hidden; /* Prevents scrolling */
+        position: fixed;    /* Fixes body position */
+        top: -${window.scrollY}px; /* Maintains scroll position */
+      }
+      .scroll-fix {
+        top: -${window.scrollY}px;
+        overflow-y: hidden;
+      }
       .files-container {
         width: 90%;
         height: 90%;
@@ -527,7 +535,11 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
   
   .window-body a {
         color: #c6aeff;
-    }
+  }
+
+  .four-container h4 {
+    color: #fff;
+  }
 }
 </style>
   <script>
@@ -537,21 +549,36 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
     const slidesClose = document.getElementsByClassName("slides-close")[0]
     const sponsorButton = document.getElementsByClassName("sponsor")[0]
     const slidesButton = document.getElementsByClassName("slides")[0]
+    
+    const oneWindow = document.getElementsByClassName("window-body")[0]
+    const twoWindow = document.getElementsByClassName("window-body")[1]
 
     sponsorButton.onclick = () => {
       sponsorModal.style.display = "block"
+      document.body.classList.add('modal-open');
+      oneWindow.classList.add('scroll-fix')
+      twoWindow.classList.add('scroll-fix')  
     }
 
     slidesButton.onclick = () => {
       slidesModal.style.display = "block"
+      document.body.classList.add('modal-open');
+      oneWindow.classList.add('scroll-fix')
+      twoWindow.classList.add('scroll-fix') 
     }
 
     sponsorClose.onclick = () => {
       sponsorModal.style.display = "none"
+      document.body.classList.remove('modal-open');
+      oneWindow.classList.remove("scroll-fix")
+      twoWindow.classList.remove("scroll-fix")
     }
 
     slidesClose.onclick = () => {
       slidesModal.style.display = "none"
+      document.body.classList.remove('modal-open');
+      oneWindow.classList.remove('scroll-fix')
+      twoWindow.classList.remove('scroll-fix') 
     }
 
     window.onclick = (event) => {
@@ -564,9 +591,9 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
   </script>
   </head>
   <body>
-            <div class="background-img img-contain">
-              <Image class="image" src={Logo} alt="logo" />
-            </div>
+    <div class="background-img img-contain">
+      <Image class="image" src={Logo} alt="logo" />
+    </div>
     <div class="container">
       <div class="left-section">
         <div class="icon-container">
@@ -706,7 +733,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         </div>
       </div>
 
-      <div class="window four sponsor-modal">
+      <dialog class="window four sponsor-modal">
         <div class="title-bar" id="bar-color">
           <div class="title-bar-text">sponsors</div>
           <div class="title-bar-controls">
@@ -728,9 +755,9 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         </div>
         </div>
         </div>
-      </div>
+      </dialog>
 
-      <div class="window four slides-modal">
+      <dialog class="window four slides-modal">
         <div class="title-bar" id="bar-color">
           <div class="title-bar-text">files</div>
           <div class="title-bar-controls">
@@ -744,13 +771,13 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
           {files.map(v => (
               <div key={v} class="file">
               <Image src={paper} alt="paper" class="file-img" />
-              <a href={`/slides/${v}`}>{v}</a>
+              <a href={`/slides/${v}`} target="_blank">{v}</a>
               </div>
               ))}
           </div>
         </div>
         </div>
-      </div>
+      </dialog>
 
     </div>
   </body>
