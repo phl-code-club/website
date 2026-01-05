@@ -9,8 +9,10 @@ import posthog from "../assets/posthog.png";
 import slides from "../assets/slides.png";
 import terminal from "../assets/terminal.txt?raw";
 import { Image } from "astro:assets";
-import phlsticker from "../assets/phl-square-sticker.png"
-import sponsor from "../assets/sponsor.png"
+import phlsticker from "../assets/phl-square-sticker.png";
+import sponsor from "../assets/sponsor.png";
+import paper from "../assets/paper.png"
+let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true})).map(v => v.replace("/public/slides/", ""));
 ---
 
 <!doctype html>
@@ -155,8 +157,12 @@ import sponsor from "../assets/sponsor.png"
         height: 2rem;
         padding: 0.9rem;
       }
-      .sponsor {
+      .sponsor,
+      .slides {
         cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       .sponsor .icons {
         width: 3rem;
@@ -191,9 +197,9 @@ import sponsor from "../assets/sponsor.png"
 
       .sponsors {
         width: 40%;
-        height: 18em;
+        height: 12em;
         object-fit: contain;
-        margin: 1rem 0;
+        margin: 1rem;
       } 
 
       .image-logo {
@@ -309,6 +315,18 @@ import sponsor from "../assets/sponsor.png"
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+      }
+
+      .four-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .four-container h4 {
+        text-align: center;
       }
 
       .sponsors-container {
@@ -316,20 +334,39 @@ import sponsor from "../assets/sponsor.png"
         justify-content: space-evenly;
       }
 
-      .modal {
+      .sponsor-modal,
+      .slides-modal {
         position: fixed;
         display: none;
          z-index: 1; /* Sit on top */
          left: 50%;
          top: 50%;
          transform: translate(-50%, -50%);
-         width: 90dvw; /* Full width */
+         width: 80dvw; /* Full width */
          overflow: none; /* Enable scroll if needed */
          background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
          justify-content: center; /* Center horizontally */
         align-items: center; /* Center vertically */
       }
 
+      .files-container {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        justify-content: start;
+      }
+      
+      .file {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+      }
+
+      .file-img {
+        width: 4em;
+        height: auto;
+      }
 
       @media screen and (min-width: 1300px) {
         .left-section {
@@ -384,8 +421,8 @@ import sponsor from "../assets/sponsor.png"
         }
 
         .sponsors-container {
-          flex-direction: column;
           align-content: center;
+          justify-content: center;
         }
         .logo { 
           width: 10em;
@@ -427,6 +464,10 @@ import sponsor from "../assets/sponsor.png"
         pre {
           font-size: medium;
           padding: 0rem;
+        }
+
+        .sponsors {
+          height: 20em;
         }
       }
 
@@ -481,24 +522,40 @@ import sponsor from "../assets/sponsor.png"
   p .contact-link {
     color: #D4E6F3;
   }
+  
+  .window-body a {
+        color: #c6aeff;
+    }
 }
 </style>
   <script>
-    const modal = document.getElementsByClassName("modal")[0]
-    const button = document.getElementsByClassName("close")[0]
+    const sponsorModal = document.getElementsByClassName("sponsor-modal")[0]
+    const slidesModal = document.getElementsByClassName("slides-modal")[0]
+    const sponsorClose = document.getElementsByClassName("sponsor-close")[0]
+    const slidesClose = document.getElementsByClassName("slides-close")[0]
     const sponsorButton = document.getElementsByClassName("sponsor")[0]
+    const slidesButton = document.getElementsByClassName("slides")[0]
 
     sponsorButton.onclick = () => {
-      modal.style.display = "block"
+      sponsorModal.style.display = "block"
     }
 
-    button.onclick = () => {
-      modal.style.display = "none"
+    slidesButton.onclick = () => {
+      slidesModal.style.display = "block"
+    }
+
+    sponsorClose.onclick = () => {
+      sponsorModal.style.display = "none"
+    }
+
+    slidesClose.onclick = () => {
+      slidesModal.style.display = "none"
     }
 
     window.onclick = (event) => {
       if (event.target == modal) {
-        modal.style.display = "none";
+        sponsorModal.style.display = "none";
+        slidesModal.style.display = "none";
       }
     }
 
@@ -523,7 +580,7 @@ import sponsor from "../assets/sponsor.png"
             <Image src={email} alt="email icon" class="icons" />
             <p class="icon-text">Email</p>
           </a>
-          <a href="/slides">
+          <a class="slides">
             <Image src={slides} alt="slides icon" class="icons" />
             <p class="icon-text">Slides</p>
           </a>
@@ -647,20 +704,44 @@ import sponsor from "../assets/sponsor.png"
         </div>
       </div>
 
-      <div class="window four modal">
+      <div class="window four sponsor-modal">
         <div class="title-bar" id="bar-color">
-          <div class="title-bar-text">note pad</div>
+          <div class="title-bar-text">sponsors</div>
           <div class="title-bar-controls">
             <button aria-label="Minimize"></button>
             <button aria-label="Maximize"></button>
-            <button class="close" aria-label="Close"></button>
+            <button class="sponsor-close" aria-label="Close"></button>
           </div>
         </div>
         <div class="window-body contain body-right body-tabs">
+        <div class="four-container">
         <h4>PHL Code Club Sponsors</h4>
         <div class="sponsors-container">
         <Image src={resilient} alt="resilient coders logo" class="sponsors" />
         <Image src={posthog} alt="posthog logo" class="sponsors posthog" />
+        </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="window four slides-modal">
+        <div class="title-bar" id="bar-color">
+          <div class="title-bar-text">files</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button class="slides-close" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body contain body-right body-tabs"> 
+         <div class="files-container"> 
+          {files.map(v => (
+              <div key={v} class="file">
+              <Image src={paper} alt="paper" class="file-img" />
+              <a href={`/slides/${v}`}>{v}</a>
+              </div>
+              ))}
+          </div>
         </div>
         </div>
       </div>
