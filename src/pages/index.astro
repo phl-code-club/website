@@ -196,10 +196,9 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
       }
 
       .sponsors {
-        width: 40%;
+        width: 100%;
         height: 12em;
         object-fit: contain;
-        margin: 1rem;
       } 
 
       .image-logo {
@@ -333,7 +332,10 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         display: flex;
         justify-content: space-evenly;
       }
-
+      
+      .sponsors-container a {
+        margin: 1rem;
+      }
       .sponsor-modal,
       .slides-modal {
         position: fixed;
@@ -717,8 +719,12 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         <div class="four-container">
         <h4>PHL Code Club Sponsors</h4>
         <div class="sponsors-container">
-        <Image src={resilient} alt="resilient coders logo" class="sponsors" />
+        <a href="https://www.resilientcoders.org/" target="_blank">
+          <Image src={resilient} alt="resilient coders logo" class="sponsors" />
+        </a>
+        <a href="https://posthog.com/" target="_blank">
         <Image src={posthog} alt="posthog logo" class="sponsors posthog" />
+        </a>
         </div>
         </div>
         </div>
