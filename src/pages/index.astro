@@ -609,14 +609,14 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
             <Image src={email} alt="email icon" class="icons" />
             <p class="icon-text">Email</p>
           </a>
-          <a class="slides">
+          <a class="slides" tabindex="0">
             <Image src={slides} alt="slides icon" class="icons" />
             <p class="icon-text">Slides</p>
           </a>
-          <div class="sponsor">
+          <a class="sponsor" tabindex="0">
             <Image src={sponsor} alt="sponsor icon" class="icons" />
             <p class="icon-text">Sponsors</p>
-          </div>
+          </a>
         </div>
         <div class="window three">
           <div class="title-bar" id="bar-color">
