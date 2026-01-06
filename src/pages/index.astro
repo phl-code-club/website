@@ -11,8 +11,10 @@ import terminal from "../assets/terminal.txt?raw";
 import { Image } from "astro:assets";
 import phlsticker from "../assets/phl-square-sticker.png";
 import sponsor from "../assets/sponsor.png";
-import paper from "../assets/paper.png"
-let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true})).map(v => v.replace("/public/slides/", ""));
+import paper from "../assets/paper.png";
+let files = Object.keys(
+  import.meta.glob("/public/slides/*.pdf", { eager: true }),
+).map((v) => v.replace("/public/slides/", ""));
 ---
 
 <!doctype html>
@@ -31,36 +33,35 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         --colors-violet: #7832d3;
         --colors-black: #000;
         --colors-white: #fff;
-        --colors-gray: #262626; 
+        --colors-gray: #262626;
       }
 
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--colors-cyan);
-  }
+      @media (prefers-color-scheme: light) {
+        body {
+          background-color: var(--colors-cyan);
+        }
 
-  .window {
-    background-color: var(--colors-lavender);
-  }
+        .window {
+          background-color: var(--colors-lavender);
+        }
 
-  .body-left,
-  .body-tabs {
-    background-color: var(--colors-white);
-  }
+        .body-left,
+        .body-tabs {
+          background-color: var(--colors-white);
+        }
 
-  body .three .title-bar {
-    background: var(--colors-gray);
-  }
-  
-  .name {
-    color: var(--colors-violet);
-  }
+        body .three .title-bar {
+          background: var(--colors-gray);
+        }
 
-  .icon-text {
-    color: var(--colors-black)
-  }
+        .name {
+          color: var(--colors-violet);
+        }
 
-}
+        .icon-text {
+          color: var(--colors-black);
+        }
+      }
 
       body {
         margin: 2rem;
@@ -78,7 +79,6 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         flex-wrap: wrap;
         justify-content: center;
         max-width: 95rem;
-
       }
 
       .window {
@@ -89,7 +89,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
 
       body .title-bar {
         height: 2rem;
-        padding: 0 .4rem;
+        padding: 0 0.4rem;
         border-bottom: 2px solid var(--colors-white);
         background: linear-gradient(
           90deg,
@@ -178,15 +178,15 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         margin: auto;
       }
 
-    .background-img{
-      position: absolute;
-      left: 2%;
-      padding: 0;
-      max-width: 20em;
-      bottom: 0%;
-      z-index: -5;
-      margin: 0;
-    }
+      .background-img {
+        position: absolute;
+        left: 2%;
+        padding: 0;
+        max-width: 20em;
+        bottom: 0%;
+        z-index: -5;
+        margin: 0;
+      }
 
       .image {
         width: 100%;
@@ -199,7 +199,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         width: 100%;
         height: 12em;
         object-fit: contain;
-      } 
+      }
 
       .image-logo {
         width: 40%;
@@ -233,7 +233,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         border-right: 2px solid #f4f4f4;
         border-bottom: 2px solid #f4f4f4;
         height: 14rem;
-        margin: .5em 0;
+        margin: 0.5em 0;
       }
 
       body .three .title-bar {
@@ -274,7 +274,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
 
       .icon-text {
         margin: 0;
-        font-size: .9rem;
+        font-size: 0.9rem;
         font-weight: 600;
       }
 
@@ -287,7 +287,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
       }
 
       h3 {
-        font-size:1.5rem
+        font-size: 1.5rem;
       }
 
       button {
@@ -298,7 +298,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         margin: 1rem 0;
       }
 
-      .logo { 
+      .logo {
         transform: rotate(3deg);
         height: 12dvh;
       }
@@ -332,7 +332,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         display: flex;
         justify-content: space-evenly;
       }
-      
+
       .sponsors-container a {
         margin: 1rem;
       }
@@ -340,14 +340,14 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
       .slides-modal {
         position: fixed;
         display: none;
-         z-index: 1; /* Sit on top */
-         left: 50%;
-         top: 50%;
-         transform: translate(-50%, -50%);
-         width: 80dvw; /* Full width */
-         overflow: none; /* Enable scroll if needed */
-         background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-         justify-content: center; /* Center horizontally */
+        z-index: 1; /* Sit on top */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 80dvw; /* Full width */
+        overflow: none; /* Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        justify-content: center; /* Center horizontally */
         align-items: center; /* Center vertically */
       }
 
@@ -357,7 +357,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         display: flex;
         justify-content: start;
       }
-      
+
       .file {
         display: flex;
         flex-direction: column;
@@ -399,20 +399,21 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         .background-img .image {
           padding: 2.5rem 0 0;
         }
-        .left-section, .two {
+        .left-section,
+        .two {
           max-width: 100%;
           width: 100%;
         }
-        
+
         .four .window-body {
           height: 80dvh;
           justify-content: center;
         }
-        .sponsor .icons, 
+        .sponsor .icons,
         .icons {
           width: 55px;
           height: 55px;
-          padding: .9rem;
+          padding: 0.9rem;
         }
 
         .sponsors {
@@ -426,7 +427,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
           align-content: center;
           justify-content: center;
         }
-        .logo { 
+        .logo {
           width: 10em;
           height: 10dvh;
         }
@@ -473,100 +474,103 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         }
       }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-        --dark-body-bg: #28153d;
-        --dark-body-tabs-bg: #19082c;
-        --dark-window-bg: #8d67bf;
-        --dark-three-title-bar-bg: #f0f0f0;
-        --dark-three-title-bar-text: #000;
-        --dark-title-bar-start: #030105;
-        --dark-name: #c6aeff;
-  }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --dark-body-bg: #28153d;
+          --dark-body-tabs-bg: #19082c;
+          --dark-window-bg: #8d67bf;
+          --dark-three-title-bar-bg: #f0f0f0;
+          --dark-three-title-bar-text: #000;
+          --dark-title-bar-start: #030105;
+          --dark-name: #c6aeff;
+        }
 
-  body {
-    color: var(--colors-white);
-    background-color: var(--dark-body-bg);
-  }
+        body {
+          color: var(--colors-white);
+          background-color: var(--dark-body-bg);
+        }
 
-  .body-left,
-  .body-tabs {
-    background-color: var(--dark-body-tabs-bg);
-  }
+        .body-left,
+        .body-tabs {
+          background-color: var(--dark-body-tabs-bg);
+        }
 
-  .window {
-    background-color: var(--dark-window-bg);
-  }
+        .window {
+          background-color: var(--dark-window-bg);
+        }
 
-  .three {
-    background-color: var(--colors-gray);
-  }
-  body .three .title-bar {
-    background: var(--dark-three-title-bar-bg);
-  }
+        .three {
+          background-color: var(--colors-gray);
+        }
+        body .three .title-bar {
+          background: var(--dark-three-title-bar-bg);
+        }
 
-  body .three .title-bar .title-bar-text {
-    color: var(--dark-three-title-bar-text);
-  }
+        body .three .title-bar .title-bar-text {
+          color: var(--dark-three-title-bar-text);
+        }
 
-  .title-bar {
-    background: linear-gradient(90deg, var(--dark-title-bar-start), var(--colors-violet));
-  }
+        .title-bar {
+          background: linear-gradient(
+            90deg,
+            var(--dark-title-bar-start),
+            var(--colors-violet)
+          );
+        }
 
-  .name {
-    color: var(--dark-name);
-  }
+        .name {
+          color: var(--dark-name);
+        }
 
-  .icon-text {
-    color: #ffffff;
-  }
+        .icon-text {
+          color: #ffffff;
+        }
 
-  p .contact-link {
-    color: #D4E6F3;
-  }
-  
-  .window-body a {
-        color: #c6aeff;
-    }
-}
-</style>
-  <script>
-    const sponsorModal = document.getElementsByClassName("sponsor-modal")[0]
-    const slidesModal = document.getElementsByClassName("slides-modal")[0]
-    const sponsorClose = document.getElementsByClassName("sponsor-close")[0]
-    const slidesClose = document.getElementsByClassName("slides-close")[0]
-    const sponsorButton = document.getElementsByClassName("sponsor")[0]
-    const slidesButton = document.getElementsByClassName("slides")[0]
+        p .contact-link {
+          color: #d4e6f3;
+        }
 
-    sponsorButton.onclick = () => {
-      sponsorModal.style.display = "block"
-    }
-
-    slidesButton.onclick = () => {
-      slidesModal.style.display = "block"
-    }
-
-    sponsorClose.onclick = () => {
-      sponsorModal.style.display = "none"
-    }
-
-    slidesClose.onclick = () => {
-      slidesModal.style.display = "none"
-    }
-
-    window.onclick = (event) => {
-      if (event.target == modal) {
-        sponsorModal.style.display = "none";
-        slidesModal.style.display = "none";
+        .window-body a {
+          color: #c6aeff;
+        }
       }
-    }
+    </style>
+    <script>
+      const sponsorModal = document.getElementsByClassName("sponsor-modal")[0];
+      const slidesModal = document.getElementsByClassName("slides-modal")[0];
+      const sponsorClose = document.getElementsByClassName("sponsor-close")[0];
+      const slidesClose = document.getElementsByClassName("slides-close")[0];
+      const sponsorButton = document.getElementsByClassName("sponsor")[0];
+      const slidesButton = document.getElementsByClassName("slides")[0];
 
-  </script>
+      sponsorButton.onclick = () => {
+        sponsorModal.style.display = "block";
+      };
+
+      slidesButton.onclick = () => {
+        slidesModal.style.display = "block";
+      };
+
+      sponsorClose.onclick = () => {
+        sponsorModal.style.display = "none";
+      };
+
+      slidesClose.onclick = () => {
+        slidesModal.style.display = "none";
+      };
+
+      window.onclick = (event) => {
+        if (event.target == modal) {
+          sponsorModal.style.display = "none";
+          slidesModal.style.display = "none";
+        }
+      };
+    </script>
   </head>
   <body>
-            <div class="background-img img-contain">
-              <Image class="image" src={Logo} alt="logo" />
-            </div>
+    <div class="background-img img-contain">
+      <Image class="image" src={Logo} alt="logo" />
+    </div>
     <div class="container">
       <div class="left-section">
         <div class="icon-container">
@@ -603,7 +607,7 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
           <div class="window-body body-left">
             <div class="img-contain">
               <pre
-                  style="background-color: #000; color: #fff; box-shadow: none; white-space: pre; font-size: .95em;"
+                style="background-color: #000; color: #fff; box-shadow: none; white-space: pre; font-size: .95em;"
                 set:html={terminal}
               />
             </div>
@@ -622,14 +626,15 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
         </div>
         <div class="window-body contain body-right body-tabs">
           <h2 style="margin: 1rem 0 0;">About</h2>
-        <div style="display: flex; align-items: center">
-         <p>
-            <b>PHL Code Club</b> aims to break the mold of the normal "Someone comes
-            and gives a talk" kind of meetups. Not that those aren't great (They
-            are, Graham loves talking) - We want to create a more interactive space
-            with a focus on coding challenges, project showcases, and hands on workshops.
-          </p>
-          <Image class="image logo" src={phlsticker} alt="logo" />
+          <div style="display: flex; align-items: center">
+            <p>
+              <b>PHL Code Club</b> aims to break the mold of the normal "Someone
+              comes and gives a talk" kind of meetups. Not that those aren't great
+              (They are, Graham loves talking) - We want to create a more interactive
+              space with a focus on coding challenges, project showcases, and hands
+              on workshops.
+            </p>
+            <Image class="image logo" src={phlsticker} alt="logo" />
           </div>
           <h2 style="margin: 1rem 0;">Join Us</h2>
           <p>
@@ -646,15 +651,23 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
             style="border: 1px solid #bfcbda88; border-radius: 4px;"
             allowfullscreen=""
             aria-hidden="false"
-            tabindex="0"></iframe> 
+            tabindex="0"></iframe>
           <h3 style="margin: 1rem 0;">Drop us a line</h3>
           <p>
-            <a class="contact-link" href="https://phlcodeclub.notion.site/2813d7f6cb698000934dfce5d82f6528?pvs=105" target="_blank">
-            Contact us with any questions, feedback, or just say hi!
+            <a
+              class="contact-link"
+              href="https://phlcodeclub.notion.site/2813d7f6cb698000934dfce5d82f6528?pvs=105"
+              target="_blank"
+            >
+              Contact us with any questions, feedback, or just say hi!
             </a>
-            <br><br>
-            <a class="contact-link" href="https://phlcodeclub.notion.site/2813d7f6cb69804d9904d5c2b9dff3ec?pvs=105" target="_blank">
-            If you have ideas for workshops or talks, let us know!
+            <br /><br />
+            <a
+              class="contact-link"
+              href="https://phlcodeclub.notion.site/2813d7f6cb69804d9904d5c2b9dff3ec?pvs=105"
+              target="_blank"
+            >
+              If you have ideas for workshops or talks, let us know!
             </a>
           </p>
           <h2 style="margin: 1rem 0;">Organizers</h2>
@@ -716,17 +729,25 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
           </div>
         </div>
         <div class="window-body contain body-right body-tabs">
-        <div class="four-container">
-        <h4>PHL Code Club Sponsors</h4>
-        <div class="sponsors-container">
-        <a href="https://www.resilientcoders.org/" target="_blank">
-          <Image src={resilient} alt="resilient coders logo" class="sponsors" />
-        </a>
-        <a href="https://posthog.com/" target="_blank">
-        <Image src={posthog} alt="posthog logo" class="sponsors posthog" />
-        </a>
-        </div>
-        </div>
+          <div class="four-container">
+            <h4>PHL Code Club Sponsors</h4>
+            <div class="sponsors-container">
+              <a href="https://www.resilientcoders.org/" target="_blank">
+                <Image
+                  src={resilient}
+                  alt="resilient coders logo"
+                  class="sponsors"
+                />
+              </a>
+              <a href="https://posthog.com/" target="_blank">
+                <Image
+                  src={posthog}
+                  alt="posthog logo"
+                  class="sponsors posthog"
+                />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -739,19 +760,19 @@ let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true}))
             <button class="slides-close" aria-label="Close"></button>
           </div>
         </div>
-        <div class="window-body contain body-right body-tabs"> 
-         <div class="files-container"> 
-          {files.map(v => (
-              <div key={v} class="file">
-              <Image src={paper} alt="paper" class="file-img" />
-              <a href={`/slides/${v}`}>{v}</a>
-              </div>
-              ))}
+        <div class="window-body contain body-right body-tabs">
+          <div class="files-container">
+            {
+              files.map((v) => (
+                <div key={v} class="file">
+                  <Image src={paper} alt="paper" class="file-img" />
+                  <a href={`/slides/${v}`}>{v}</a>
+                </div>
+              ))
+            }
           </div>
         </div>
-        </div>
       </div>
-
     </div>
   </body>
 </html>
