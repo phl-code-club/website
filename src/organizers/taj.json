@@ -18,10 +18,5 @@
   "photo": "../assets/Taj_Coffee.JPG",
   "emoticon": "(⸝⸝⸝• ω •⸝⸝⸝)♡",
   "email": "Taj@phlcode.club",
-  "links": {
-    "website": {
-      "icon": "🔗",
-      "url": "CheckBackLater.LOL"
-    }
-  }
+  "links": {}
 }

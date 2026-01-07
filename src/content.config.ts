@@ -31,7 +31,7 @@ const organizers = defineCollection({
     photo: z.string(),
     emoticon: z.string(),
     email: z.string().email(),
-    links: z.map(z.string(), z.object({
+    links: z.record(z.string(), z.object({
       icon: z.string().emoji(),
       url: z.string().url(),
     })),
