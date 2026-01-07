@@ -1,3 +1,27 @@
 {
-  "$schema": "../organizer.schema.json"
+  "$schema": "../organizer.schema.json",
+  "name": "Taj_Amani",
+  "bio": "Taj is a dancing queen turned programming personality hire. He writes SQL by day and dances by night at the local YMCA. He hopes to bring a passion for life to PHL Code Club.",
+  "likes": [
+    "Dancing",
+    "Britney Spears and Charli XCX",
+    "Monarchy (ask about Norway)",
+    "Cats",
+    "Super Smash Bros"
+  ],
+  "dislikes": [
+    "Sitting with feelings",
+    "Grahams Keyboards",
+    "When Fritzy doesn't want pets :("
+  ],
+  "title": "SVP Personality Hires",
+  "photo": "../assets/Taj_Coffee.JPG",
+  "emoticon": "(⸝⸝⸝• ω •⸝⸝⸝)♡",
+  "email": "Taj@phlcode.club",
+  "links": {
+    "website": {
+      "icon": "🔗",
+      "url": "CheckBackLater.LOL"
+    }
+  }
 }
