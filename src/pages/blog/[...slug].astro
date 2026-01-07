@@ -1,31 +1,40 @@
 ---
-import "98.css"
-import { getCollection } from 'astro:content';
-import { getEntry, render } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
+import "98.css";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import FontAwesomeIcon from "../../components/FontAwesomeIcon.astro";
+import {
+  faBluesky,
+  faLinkedin,
+  faMastodon,
+} from "@fortawesome/free-brands-svg-icons";
+import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<"blog">;
 }
 
 // Get all entries from a collection.
 // Requires the name of the collection as an argument.
-const posts = await getCollection('blog');
+const posts = await getCollection("blog");
 
 export async function getStaticPaths() {
-    const posts = await getCollection("blog");
-    return posts.map(p => ({
-        params: {slug: p.id},
-        props: p
-    }))
+  const posts = await getCollection("blog");
+  return posts.map((p) => ({
+    params: { slug: p.id },
+    props: p,
+  }));
 }
 
 const post = Astro.props;
-const { Content, headings } = await render(post);
+const { Content } = await render(post);
 ---
-<style>      
 
-  :root {
-
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      :root {
         --colors-lavender: #ebdefe;
         --colors-yellow: #ffeb9a;
         --colors-red: #9e3167;
@@ -35,7 +44,7 @@ const { Content, headings } = await render(post);
         --colors-violet: #7832d3;
         --colors-black: #000;
         --colors-white: #fff;
-        --colors-gray: #262626; 
+        --colors-gray: #262626;
       }
 
       body {
@@ -48,7 +57,7 @@ const { Content, headings } = await render(post);
       }
 
       .container {
-        width: 100%
+        width: 100%;
       }
 
       .window {
@@ -85,8 +94,8 @@ const { Content, headings } = await render(post);
         overflow: auto;
       }
 
-       .window-body a {
-                color: #000;
+      .window-body a {
+        color: #000;
       }
 
       .body-left,
@@ -98,108 +107,164 @@ const { Content, headings } = await render(post);
         border-bottom: 2px solid #f4f4f4;
       }
 
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--colors-cyan);
-  }
+      @media (prefers-color-scheme: light) {
+        body {
+          background-color: var(--colors-cyan);
+        }
 
-  .window {
-    background-color: var(--colors-lavender);
-  }
+        .window {
+          background-color: var(--colors-lavender);
+        }
 
-  .body-left,
-  .body-tabs {
-    background-color: var(--colors-white);
-  }
+        .body-left,
+        .body-tabs {
+          background-color: var(--colors-white);
+        }
 
-  .window-body a {
-    color: var(--colors-black);
-  }
+        .window-body a {
+          color: var(--colors-black);
+        }
 
-.list-container {
-    border-right: 1.5px solid #000;
-  }
-}
+        .list-container {
+          border-right: 1.5px solid #000;
+        }
+      }
 
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --dark-body-bg: #28153d;
+          --dark-body-tabs-bg: #19082c;
+          --dark-window-bg: #8d67bf;
+          --dark-three-title-bar-bg: #f0f0f0;
+          --dark-three-title-bar-text: #000;
+          --dark-title-bar-start: #030105;
+          --dark-name: #9c6cda;
+        }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-        --dark-body-bg: #28153d;
-        --dark-body-tabs-bg: #19082c;
-        --dark-window-bg: #8d67bf;
-        --dark-three-title-bar-bg: #f0f0f0;
-        --dark-three-title-bar-text: #000;
-        --dark-title-bar-start: #030105;
-        --dark-name: #9c6cda;
-  }
+        body {
+          color: var(--colors-white);
+          background-color: var(--dark-body-bg);
+        }
 
-  body {
-    color: var(--colors-white);
-    background-color: var(--dark-body-bg);
-  }
+        .window-body {
+          background-color: var(--dark-body-tabs-bg);
+        }
 
-  .window-body {
-    background-color: var(--dark-body-tabs-bg);
-  }
+        .window {
+          background-color: var(--dark-window-bg);
+        }
 
-  .window {
-    background-color: var(--dark-window-bg);
-  }
+        .title-bar {
+          background: linear-gradient(
+            90deg,
+            var(--dark-title-bar-start),
+            var(--colors-violet)
+          );
+        }
 
-  .title-bar {
-    background: linear-gradient(90deg, var(--dark-title-bar-start), var(--colors-violet));
-  }
+        .window-body a {
+          color: #c6aeff;
+        }
 
-  .window-body a {
-    color: #c6aeff;
-  }
+        a {
+          color: var(--colors-white);
+        }
 
-  a {
-    color: var(--colors-white)
-  }
+        .list-container {
+          border-right: 1.5px solid #fff;
+        }
+      }
+      .window-body {
+        display: flex;
+        flex-direction: row;
+      }
 
-  .list-container {
-    border-right: 1.5px solid #fff;
-  }
-}
-  .window-body {
-    display: flex;
-    flex-direction: row;
-  }
+      .list-container,
+      .blog-container {
+        padding: 0 1em;
+      }
 
-  .list-container,
-  .blog-container {
-    padding: 0 1em; 
-  }
+      ul {
+        padding-inline-start: 1em;
+      }
 
-  ul {
-    padding-inline-start: 1em;
-  }
- 
-</style>
-  <div class="window">
-    <div class="title-bar" id="bar-color">
-      <div class="title-bar-text"> blog post </div>
-      <div class="title-bar-controls">
-        <button aria-label="Minimize"></button>
-        <button aria-label="Maximize"></button>
-        <button aria-label="Close"></button>
+      .social-line {
+        font-size: 1.25rem;
+      }
+
+      .list-container {
+        min-width: 200px;
+      }
+
+      .blog-container {
+        max-width: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="window">
+      <div class="title-bar" id="bar-color">
+        <div class="title-bar-text">blog post</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="list-container">
+          <h4>More Posts</h4>
+          <ul>
+            {
+              posts.map((post) => (
+                <li>
+                  <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="blog-container">
+          <p>Published on: {post.data.pubDate.toDateString()}</p>
+          <Content />
+          <div class="social-line">
+            Follow us:
+            <a
+              href="https://lu.ma/phlcodeclub"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faCalendar} />
+              Calendar
+            </a>
+            <a
+              href="https://bsky.app/profile/phlcode.club"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faBluesky} />
+              Bluesky
+            </a>
+            <a
+              href="https://www.linkedin.com/company/phlcodeclub/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faLinkedin} />
+              Linkedin
+            </a>
+            <a
+              href="https://jawns.club/@phl_code_club"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faMastodon} />
+              Mastadon
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="window-body">
-      <div class="list-container">
-        <h4> More Posts </h2>
-        <ul>
-            {posts.map(post => (
-              <li><a href={`/blog/${post.id}`}>{post.data.title}</a></li>
-            ))}
-        </ul> 
-      </div>
-
-      <div class="blog-container"> 
-        <p>Published on: {post.data.pubDate.toDateString()}</p>
-        <Content />
-      </div>
-    </div>
-  </div>
- 
+  </body>
+</html>
