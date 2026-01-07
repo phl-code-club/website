@@ -18,13 +18,24 @@ Here today's agenda:
 
 ## Meetups
 
-PHL Code Club set out to do something new in the Philly Scene. To build a community of people that are interested in technology, programming, and computing. People who may enjoy going to talks, but also really want to work on new projects and ideas with their follow nerds - and I think we made incredible progress.
+## Meetups 
+PHL Code Club set out to do something new in the Philly Scene.  To build a community of people that are interested in technology, programming, and computing. People who may enjoy going to talks, but also really want to work on new projects and ideas with their follow nerds - and I think we made incredible progress. 
 
-[] - codex pic
+<img class="image" 
+    src="../assets/events/january-2026/EnchantedCodex.jpeg" 
+    alt="PHLCodeClub Enchaneted Codex first meeting.">
+<img class="image" 
+    src="../assets/events/january-2026/GrahamGoodHairDay.jpeg" 
+    alt= "Graham Presnetation">
+
+![PHLCodeClub Enchaneted Markdown](../assets/events/january-2026/EnchantedCodex.jpeg)
 
 We've been super fortunate to to be suppported by Christina and Amaurie's coding school Resilient coders from the start of the club and I want to give them a shout out here!
 
-[] - Reslient coders
+<img class="image" 
+    src="../assets/resilient.png" 
+    alt= "Reslitient Coders Logo">
+
 
 We're big believers that opportunities arise when you're doing your passion (and sharing it.) That said, we're also excited to share that PostHog chose us to be a part of their community builder program! [Check them out here](https://posthog.com)
 
@@ -37,5 +48,4 @@ Taj
 You can follow us on:
 [PHL Code Club](https://phlcode.club/)|[Luma](https://luma.com/phlcodeclub?k=c) | [Bluesky](https://bsky.app/profile/phlcode.club)| []
 
-![group photo](../assets/events/october-2026/Group.jpeg) -- testing
-
+![group photo](../assets/events/january-2026/Group.jpeg) -- testing 
