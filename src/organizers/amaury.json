@@ -1,3 +1,25 @@
 {
-  "$schema": "../organizer.schema.json"
+  "$schema": "../organizer.schema.json",
+  "name": "Amaury",
+  "bio": "Amaury grew up loving video games, often staying up late playing Pokémon Silver into the night. That curiosity naturally evolved into a passion for computers. He loves seeing the creative ways code can take shape on a screen. Amaury believes that with code, you can create anything, and the only limits are those of the mind. He's dedicated to building spaces that foster inclusion, curiosity, and merriment.",
+  "likes": [
+    "Mini M&M's",
+    "Chess",
+    "MMA",
+    "Bad Bunny",
+    "Jalapeno Potato Chips"
+  ],
+  "dislikes": [
+    "Certain Spicy Foods"
+  ],
+  "title": "L10 Crashout",
+  "photo": "../assets/amaury.jpg",
+  "emoticon": "ʕಠᴥಠʔ",
+  "email": "amaury@phlcode.club",
+  "links": {
+    "website": {
+      "icon": "🔗",
+      "url": "https://amaurycodes.onrender.com/"
+    }
+  }
 }
