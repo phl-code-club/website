@@ -22,13 +22,13 @@ const blog = defineCollection({
 
 const organizers = defineCollection({
   loader: glob({ pattern: "**/*.json", base: "./src/organizers" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     name: z.string(),
     bio: z.string(),
     likes: z.array(z.string()),
     dislikes: z.array(z.string()),
     title: z.string(),
-    photo: z.string(),
+    photo: image(),
     emoticon: z.string(),
     email: z.string().email(),
     links: z.record(z.string(), z.object({

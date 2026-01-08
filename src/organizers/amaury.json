@@ -13,7 +13,7 @@
     "Certain Spicy Foods"
   ],
   "title": "L10 Crashout",
-  "photo": "../assets/amaury.jpg",
+  "photo": "./amaury.jpg",
   "emoticon": "ʕಠᴥಠʔ",
   "email": "amaury@phlcode.club",
   "links": {

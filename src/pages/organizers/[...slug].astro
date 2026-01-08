@@ -1,38 +1,31 @@
 ---
 import "98.css";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import { render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import FontAwesomeIcon from "../../components/FontAwesomeIcon.astro";
-import {
-  faBluesky,
-  faLinkedin,
-  faMastodon,
-} from "@fortawesome/free-brands-svg-icons";
-import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 interface Props {
-  post: CollectionEntry<"blog">;
+  organizer: CollectionEntry<"organizers">;
 }
 
-// Get all entries from a collection.
-// Requires the name of the collection as an argument.
-const posts = await getCollection("blog");
-
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
+  const organizers = await getCollection("organizers");
+  return organizers.map((organizer) => ({
+    params: { slug: organizer.id },
+    props: {
+      organizer,
+    },
   }));
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const { organizer } = Astro.props;
 ---
 
 <html>
   <head>
     <meta charset="UTF-8" />
+    <script>
+      console.log();
+    </script>
     <style>
       :root {
         --colors-lavender: #ebdefe;
@@ -90,8 +83,13 @@ const { Content } = await render(post);
       .window-body {
         background-color: var(--colors-lavender);
         font-size: 16px;
+        display: flex;
         padding: 1rem;
         overflow: auto;
+
+        & > * {
+          margin: 1rem;
+        }
       }
 
       .window-body a {
@@ -169,42 +167,47 @@ const { Content } = await render(post);
         a {
           color: var(--colors-white);
         }
-
-        .list-container {
-          border-right: 1.5px solid #fff;
-        }
-      }
-      .window-body {
-        display: flex;
-        flex-direction: row;
-      }
-
-      .list-container,
-      .blog-container {
-        padding: 0 1em;
       }
 
       ul {
         padding-inline-start: 1em;
       }
 
-      .social-line {
+      p {
         font-size: 1.25rem;
       }
 
-      .list-container {
-        min-width: 200px;
+      .flex {
+        width: 100%;
+        max-width: 550px;
+        display: flex;
+        justify-content: space-between;
+
+        div {
+          margin-right: 1rem;
+          width: 100%;
+        }
       }
 
-      .blog-container {
-        max-width: 800px;
+      .links {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        a {
+          text-decoration: none;
+        }
+
+        a:hover {
+          text-decoration: underline;
+        }
       }
     </style>
   </head>
   <body>
     <div class="window">
       <div class="title-bar" id="bar-color">
-        <div class="title-bar-text">blog post</div>
+        <div class="title-bar-text">organizer profile</div>
         <div class="title-bar-controls">
           <button aria-label="Minimize"></button>
           <button aria-label="Maximize"></button>
@@ -212,56 +215,44 @@ const { Content } = await render(post);
         </div>
       </div>
       <div class="window-body">
-        <div class="list-container">
-          <h4>More Posts</h4>
-          <ul>
-            {
-              posts.map((post) => (
-                <li>
-                  <a href={`/blog/${post.id}`}>{post.data.title}</a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div class="blog-container">
-          <p>Published on: {post.data.pubDate.toDateString()}</p>
-          <Content />
-          <div class="social-line">
-            Follow us:
-            <a
-              href="https://lu.ma/phlcodeclub"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faCalendar} />
-              Calendar
-            </a>
-            <a
-              href="https://bsky.app/profile/phlcode.club"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faBluesky} />
-              Bluesky
-            </a>
-            <a
-              href="https://www.linkedin.com/company/phlcodeclub/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faLinkedin} />
-              Linkedin
-            </a>
-            <a
-              href="https://jawns.club/@phl_code_club"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faMastodon} />
-              Mastadon
-            </a>
+        <Image
+          src={organizer.data.photo}
+          alt={`${organizer.data.name} photo`}
+          width={400}
+        />
+        <div>
+          <h2>{organizer.data.name} {organizer.data.emoticon}</h2>
+          <h3>{organizer.data.title}</h3>
+          <p><b>Bio:</b> {organizer.data.bio}</p>
+          <div class="flex">
+            <div>
+              <p><b>Likes:</b></p>
+              <ul class="likes">
+                {organizer.data.likes.map((like) => <li>{like}</li>)}
+              </ul>
+            </div>
+            <div>
+              <p><b>Dislikes:</b></p>
+              <ul class="dislikes">
+                {organizer.data.dislikes.map((dislike) => <li>{dislike}</li>)}
+              </ul>
+            </div>
+            <div>
+              <p><b>Links:</b></p>
+              <ul class="links">
+                {
+                  Object.entries(organizer.data.links).map(
+                    ([name, { icon, url }]) => (
+                      <li>
+                        <a href={url} target="_blank">
+                          <span style="margin-right: 5px;">{icon}</span> {name}
+                        </a>
+                      </li>
+                    ),
+                  )
+                }
+              </ul>
+            </div>
           </div>
         </div>
       </div>
