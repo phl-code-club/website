@@ -5,21 +5,23 @@ import Window from "../../components/Window.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 interface Props {
-  post: CollectionEntry<"blog">;
+  post: CollectionEntry<"organizers">;
 }
 
 // Get all entries from a collection.
 // Requires the name of the collection as an argument.
-const posts = await getCollection("blog");
+const organizers = await getCollection("organizers");
 ---
 
-<Desktop title="PHL Code Club: Blog">
-  <Window title="blog">
+<Desktop title="PHL Code Club: Organizers">
+  <Window title="organizers">
     <ul>
       {
-        posts.map((post) => (
-          <li>
-            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+        organizers.map((organizer) => (
+          <li style="line-height: 1.5rem;">
+            <a href={`/organizers/${organizer.id}`}>
+              {organizer.data.name} {organizer.data.emoticon}
+            </a>
           </li>
         ))
       }
