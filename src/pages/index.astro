@@ -1,757 +1,91 @@
 ---
 import "98.css";
-import Logo from "../assets/capywiz.png";
-import keyboard from "../assets/keyboard.png";
-import calendar from "../assets/calendar.png";
-import email from "../assets/email.png";
-import resilient from "../assets/resilient.png";
-import posthog from "../assets/posthog.png";
-import slides from "../assets/slides.png";
+import Desktop from "../layouts/desktop.astro";
 import terminal from "../assets/terminal.txt?raw";
 import { Image } from "astro:assets";
 import phlsticker from "../assets/phl-square-sticker.png";
-import sponsor from "../assets/sponsor.png";
-import paper from "../assets/paper.png"
-let files = Object.keys(import.meta.glob("/public/slides/*.pdf", {eager: true})).map(v => v.replace("/public/slides/", ""));
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <style is:global>
-      :root {
-        --colors-purple: #4a306d;
-        --colors-lavender: #ebdefe;
-        --colors-yellow: #ffeb9a;
-        --colors-red: #9e3167;
-        --colors-pink: #ffcfe5;
-        --colors-blue: #215785;
-        --colors-cyan: #d4e5f6;
-        --colors-violet: #7832d3;
-        --colors-black: #000;
-        --colors-white: #fff;
-        --colors-gray: #262626; 
-      }
-
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--colors-cyan);
-  }
-
-  .window {
-    background-color: var(--colors-lavender);
-  }
-
-  .body-left,
-  .body-tabs {
-    background-color: var(--colors-white);
-  }
-
-  body .three .title-bar {
-    background: var(--colors-gray);
-  }
-  
-  .name {
-    color: var(--colors-violet);
-  }
-
-  .icon-text {
-    color: var(--colors-black)
-  }
-
-}
-
-      body {
-        margin: 2rem;
-        box-sizing: border-box;
-        background-color: var(--colors-cyan);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .container {
-        position: relative;
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 95rem;
-
-      }
-
-      .window {
-        background-color: var(--colors-lavender);
-        border-radius: 4px;
-        overflow: hidden;
-      }
-
-      body .title-bar {
-        height: 2rem;
-        padding: 0 .4rem;
-        border-bottom: 2px solid var(--colors-white);
-        background: linear-gradient(
-          90deg,
-          var(--colors-purple),
-          var(--colors-violet)
-        );
-      }
-
-      .title-bar-text {
-        padding: 0.5rem;
-        font-weight: bold;
-        color: white;
-      }
-
-      .window-body {
-        background-color: var(--colors-lavender);
-        font-size: 16px;
-        padding: 1rem;
-        overflow: auto;
-      }
-
-      .body-left,
-      .body-right,
-      .body-tabs {
-        border-left: 2px solid #404040;
-        border-top: 2px solid #404040;
-        border-right: 2px solid #f4f4f4;
-        border-bottom: 2px solid #f4f4f4;
-      }
-
-      .body-right {
-        height: 100%;
-      }
-
-      .body-tabs {
-        border-left: 2px solid #270c34;
-        border-top: 2px solid #270c34;
-        border-right: 2px solid #e1e1e1;
-        border-bottom: 2px solid #e1e1e1;
-      }
-
-      .body-left,
-      .body-tabs {
-        background-color: var(--colors-white);
-      }
-
-      .left-section {
-        width: 100%;
-        max-width: 30rem;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .icon-container {
-        display: flex;
-        justify-content: space-evenly;
-        padding-bottom: 1rem;
-      }
-      .icon-container > a {
-        text-decoration: none;
-        text-align: center;
-      }
-      .icons {
-        width: 2rem;
-        height: 2rem;
-        padding: 0.9rem;
-      }
-      .sponsor,
-      .slides {
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .sponsor .icons {
-        width: 3rem;
-        height: 3rem;
-        padding: 0.4rem;
-      }
-
-      .img-contain {
-        justify-content: center;
-        display: flex;
-        width: 100%;
-        max-width: 20em;
-        margin: auto;
-      }
-
-    .background-img{
-      position: absolute;
-      left: 2%;
-      padding: 0;
-      max-width: 20em;
-      bottom: 0%;
-      z-index: -5;
-      margin: 0;
-    }
-
-      .image {
-        width: 100%;
-        height: 30dvh;
-        object-fit: contain;
-        padding: 2rem;
-      }
-
-      .sponsors {
-        width: 100%;
-        height: 12em;
-        object-fit: contain;
-      } 
-
-      .image-logo {
-        width: 40%;
-        height: 100%;
-        object-fit: contain;
-        padding: 3rem;
-      }
-
-      .one {
-        margin-bottom: 1rem;
-      }
-
-      .two {
-        flex: 1.5;
-        width: 50%;
-        height: clamp(500px, 90dvh, 70rem);
-        display: flex;
-        flex-direction: column;
-      }
-
-      .three {
-        width: 90%;
-        margin: 0 auto;
-        background-color: var(--colors-gray);
-      }
-
-      .three > .window-body {
-        background-color: var(--colors-black);
-        border-left: 2px solid #404040;
-        border-top: 2px solid #404040;
-        border-right: 2px solid #f4f4f4;
-        border-bottom: 2px solid #f4f4f4;
-        height: 14rem;
-        margin: .5em 0;
-      }
-
-      body .three .title-bar {
-        background: var(--colors-gray);
-      }
-
-      .input {
-        display: inline-block;
-        width: 10px;
-        animation: blink 1s step-start infinite;
-        font-weight: 600;
-      }
-
-      @keyframes blink {
-        50% {
-          opacity: 0;
-        }
-      }
-
-      menu {
-        display: flex;
-        list-style: none;
-        padding: 0;
-      }
-
-      .links {
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .organizers {
-        width: 100%;
-        display: flex;
-        justify-content: start;
-      }
-
-      .icon-text {
-        margin: 0;
-        font-size: .9rem;
-        font-weight: 600;
-      }
-
-      .organizers > div {
-        padding: 0 0.5rem;
-      }
-
-      p {
-        font-weight: 400;
-      }
-
-      h3 {
-        font-size:1.5rem
-      }
-
-      button {
-        background: white;
-      }
-
-      .name {
-        margin: 1rem 0;
-      }
-
-      .logo { 
-        transform: rotate(3deg);
-        height: 12dvh;
-      }
-
-      pre {
-        padding: 0;
-      }
-
-      .four .window-body {
-        height: 75dvh;
-        padding: 0;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .four-container {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-      }
-
-      .four-container h4 {
-        text-align: center;
-      }
-
-      .sponsors-container {
-        display: flex;
-        justify-content: space-evenly;
-      }
-      
-      .sponsors-container a {
-        margin: 1rem;
-      }
-      .sponsor-modal,
-      .slides-modal {
-        position: fixed;
-        display: none;
-         z-index: 1; /* Sit on top */
-         left: 50%;
-         top: 50%;
-         transform: translate(-50%, -50%);
-         width: 80dvw; /* Full width */
-         overflow: none; /* Enable scroll if needed */
-         background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-         justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-      }
-
-      .files-container {
-        width: 90%;
-        height: 90%;
-        display: flex;
-        justify-content: start;
-      }
-      
-      .file {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1em;
-      }
-
-      .file-img {
-        width: 4em;
-        height: auto;
-      }
-
-      @media screen and (min-width: 1300px) {
-        .left-section {
-          max-width: 36rem;
-        }
-      }
-      @media screen and (max-width: 1100px) {
-        .three {
-          width: 100%;
-        }
-        body {
-          display: flex;
-          flex-direction: column-reverse;
-        }
-
-        .three > .window-body {
-          height: 16rem;
-          margin: 1em 0;
-        }
-        .container {
-          flex-direction: column;
-          align-content: center;
-        }
-        .background-img {
-          position: relative;
-          left: 0;
-        }
-        .background-img .image {
-          padding: 2.5rem 0 0;
-        }
-        .left-section, .two {
-          max-width: 100%;
-          width: 100%;
-        }
-        
-        .four .window-body {
-          height: 80dvh;
-          justify-content: center;
-        }
-        .sponsor .icons, 
-        .icons {
-          width: 55px;
-          height: 55px;
-          padding: .9rem;
-        }
-
-        .sponsors {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .sponsors-container {
-          align-content: center;
-          justify-content: center;
-        }
-        .logo { 
-          width: 10em;
-          height: 10dvh;
-        }
-        pre {
-          font-size: medium;
-        }
-
-        .icon-text {
-          font-size: 1.4rem;
-        }
-
-        .one,
-        .three,
-        .icon-container,
-        .two {
-          margin-top: 1rem;
-        }
-
-        p {
-          font-size: 1.4rem;
-        }
-
-        .two {
-          height: 100%;
-        }
-      }
-
-      @media screen and (max-width: 750px) {
-        .left-section {
-          width: 95%;
-        }
-
-        .two {
-          width: 95%;
-        }
-
-        pre {
-          font-size: medium;
-          padding: 0rem;
-        }
-
-        .sponsors {
-          height: 20em;
-        }
-      }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-        --dark-body-bg: #28153d;
-        --dark-body-tabs-bg: #19082c;
-        --dark-window-bg: #8d67bf;
-        --dark-three-title-bar-bg: #f0f0f0;
-        --dark-three-title-bar-text: #000;
-        --dark-title-bar-start: #030105;
-        --dark-name: #c6aeff;
-  }
-
-  body {
-    color: var(--colors-white);
-    background-color: var(--dark-body-bg);
-  }
-
-  .body-left,
-  .body-tabs {
-    background-color: var(--dark-body-tabs-bg);
-  }
-
-  .window {
-    background-color: var(--dark-window-bg);
-  }
-
-  .three {
-    background-color: var(--colors-gray);
-  }
-  body .three .title-bar {
-    background: var(--dark-three-title-bar-bg);
-  }
-
-  body .three .title-bar .title-bar-text {
-    color: var(--dark-three-title-bar-text);
-  }
-
-  .title-bar {
-    background: linear-gradient(90deg, var(--dark-title-bar-start), var(--colors-violet));
-  }
-
-  .name {
-    color: var(--dark-name);
-  }
-
-  .icon-text {
-    color: #ffffff;
-  }
-
-  p .contact-link {
-    color: #D4E6F3;
-  }
-  
-  .window-body a {
-        color: #c6aeff;
-    }
-}
-</style>
-  <script>
-    const sponsorModal = document.getElementsByClassName("sponsor-modal")[0]
-    const slidesModal = document.getElementsByClassName("slides-modal")[0]
-    const sponsorClose = document.getElementsByClassName("sponsor-close")[0]
-    const slidesClose = document.getElementsByClassName("slides-close")[0]
-    const sponsorButton = document.getElementsByClassName("sponsor")[0]
-    const slidesButton = document.getElementsByClassName("slides")[0]
-
-    sponsorButton.onclick = () => {
-      sponsorModal.style.display = "block"
-    }
-
-    slidesButton.onclick = () => {
-      slidesModal.style.display = "block"
-    }
-
-    sponsorClose.onclick = () => {
-      sponsorModal.style.display = "none"
-    }
-
-    slidesClose.onclick = () => {
-      slidesModal.style.display = "none"
-    }
-
-    window.onclick = (event) => {
-      if (event.target == modal) {
-        sponsorModal.style.display = "none";
-        slidesModal.style.display = "none";
-      }
-    }
-
-  </script>
-  </head>
-  <body>
-            <div class="background-img img-contain">
-              <Image class="image" src={Logo} alt="logo" />
-            </div>
-    <div class="container">
-      <div class="left-section">
-        <div class="icon-container">
-          <a href="https://discord.gg/nHgXZEz3UW" target="_blank">
-            <Image src={keyboard} alt="keyboard icon" class="icons" />
-            <p class="icon-text">Discord</p>
-          </a>
-          <a href="https://lu.ma/phlcodeclub" target="_blank">
-            <Image src={calendar} alt="calendar icon" class="icons" />
-            <p class="icon-text">Calendar</p>
-          </a>
-          <a href="mailto://info@phlcode.club" target="_blank">
-            <Image src={email} alt="email icon" class="icons" />
-            <p class="icon-text">Email</p>
-          </a>
-          <a class="slides">
-            <Image src={slides} alt="slides icon" class="icons" />
-            <p class="icon-text">Slides</p>
-          </a>
-          <div class="sponsor">
-            <Image src={sponsor} alt="sponsor icon" class="icons" />
-            <p class="icon-text">Sponsors</p>
-          </div>
-        </div>
-        <div class="window three">
-          <div class="title-bar" id="bar-color">
-            <div class="title-bar-text">terminal</div>
-            <div class="title-bar-controls">
-              <button aria-label="Minimize"></button>
-              <button aria-label="Maximize"></button>
-              <button aria-label="Close"></button>
-            </div>
-          </div>
-          <div class="window-body body-left">
-            <div class="img-contain">
-              <pre
-                  style="background-color: #000; color: #fff; box-shadow: none; white-space: pre; font-size: .95em;"
-                set:html={terminal}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="window two">
+<Desktop title="PHL Code Club">
+  <div class="container">
+    <div class="left-section">
+      <div class="window three">
         <div class="title-bar" id="bar-color">
-          <div class="title-bar-text">note pad</div>
+          <div class="title-bar-text">terminal</div>
           <div class="title-bar-controls">
             <button aria-label="Minimize"></button>
             <button aria-label="Maximize"></button>
-            <button aria-label="Close"></button>
+            <a href="/">
+              <button aria-label="Close"></button>
+            </a>
           </div>
         </div>
-        <div class="window-body contain body-right body-tabs">
-          <h2 style="margin: 1rem 0 0;">About</h2>
+        <div class="window-body body-left">
+          <div class="img-contain">
+            <pre
+              style="background-color: #000; color: #fff; box-shadow: none; white-space: pre; font-size: .95em;"
+              set:html={terminal}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="window two">
+      <div class="title-bar" id="bar-color">
+        <div class="title-bar-text">note pad</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body contain body-right body-tabs">
+        <h2 style="margin: 1rem 0 0;">About</h2>
         <div style="display: flex; align-items: center">
-         <p>
+          <p>
             <b>PHL Code Club</b> aims to break the mold of the normal "Someone comes
             and gives a talk" kind of meetups. Not that those aren't great (They
             are, Graham loves talking) - We want to create a more interactive space
             with a focus on coding challenges, project showcases, and hands on workshops.
           </p>
           <Image class="image logo" src={phlsticker} alt="logo" />
-          </div>
-          <h2 style="margin: 1rem 0;">Join Us</h2>
-          <p>
-            Our goal is to encourage people to attend no matter their
-            background. We aim to teach and engage with our members so everyone
-            comes out learning something. If that sounds like something you are
-            interested in, please join our Discord and Meetup group.
-          </p>
-          <iframe
-            src="https://luma.com/embed/calendar/cal-ognDKwStICAW6bF/events"
-            width="100%"
-            height="300"
-            frameborder="0"
-            style="border: 1px solid #bfcbda88; border-radius: 4px;"
-            allowfullscreen=""
-            aria-hidden="false"
-            tabindex="0"></iframe> 
-          <h3 style="margin: 1rem 0;">Drop us a line</h3>
-          <p>
-            <a class="contact-link" href="https://phlcodeclub.notion.site/2813d7f6cb698000934dfce5d82f6528?pvs=105" target="_blank">
+        </div>
+        <h2 style="margin: 1rem 0;">Join Us</h2>
+        <p>
+          Our goal is to encourage people to attend no matter their background.
+          We aim to teach and engage with our members so everyone comes out
+          learning something. If that sounds like something you are interested
+          in, please join our Discord and Meetup group.
+        </p>
+        <iframe
+          src="https://luma.com/embed/calendar/cal-ognDKwStICAW6bF/events"
+          width="100%"
+          height="300"
+          frameborder="0"
+          style="border: 1px solid #bfcbda88; border-radius: 4px;"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0"></iframe>
+        <h3 style="margin: 1rem 0;">Drop us a line</h3>
+        <p>
+          <a
+            class="contact-link"
+            href="https://phlcodeclub.notion.site/2813d7f6cb698000934dfce5d82f6528?pvs=105"
+            target="_blank"
+          >
             Contact us with any questions, feedback, or just say hi!
-            </a>
-            <br><br>
-            <a class="contact-link" href="https://phlcodeclub.notion.site/2813d7f6cb69804d9904d5c2b9dff3ec?pvs=105" target="_blank">
+          </a>
+          <br /><br />
+          <a
+            class="contact-link"
+            href="https://phlcodeclub.notion.site/2813d7f6cb69804d9904d5c2b9dff3ec?pvs=105"
+            target="_blank"
+          >
             If you have ideas for workshops or talks, let us know!
-            </a>
-          </p>
-          <h2 style="margin: 1rem 0;">Organizers</h2>
-          <h4 class="name">
-            Christina <span aria-hidden="true">ʕ•ᴥ•ʔ</span>
-          </h4>
-          <p>
-            Chris' first experience with coding came from breaking Tumblr themes
-            until she was creating custom layouts. Fast-forward, working in IT
-            and troubleshooting computer issues, her love for problem-solving
-            grew. Now, she combines creativity and technical skills to build
-            beautiful & functional UIs. She hopes to create an inclusive space
-            to share her passion for coding.
-          </p>
-          <h4 class="name">
-            Graham <span aria-hidden="true">ʕ⌐■ᴥ■ʔ</span>
-          </h4>
-          <p>
-            Graham is an all around computer nerd. What started out as a love of
-            video games, moved into learning how to build computers and getting
-            interested in how they work, to learning to code. Now a software
-            engineer, he aims to share his love of computing, especially the
-            terminal, and continue learning from everyone he meets.
-          </p>
-          <h4 class="name">
-            Amaury <span aria-hidden="true">ʕಠᴥಠʔ</span>
-          </h4>
-          <p>
-            Amaury grew up loving video games, often staying up late playing
-            Pokémon Silver into the night. That curiosity naturally moved to
-            computers, keeping them zippy and reliable. He loves seeing the
-            creative ways code can take shape on a screen. Amaury believes that
-            with code, you can create anything, and the only limits are those of
-            the mind. He's dedicated to building spaces that foster inclusion,
-            curiosity, and merriment.
-          </p>
-          <h4 class="name">
-            Taj <span aria-hidden="true">(⸝⸝⸝• ω •⸝⸝⸝)♡</span>
-          </h4>
-          <p>
-            Taj is another video gamer, only spending too much time playing
-            Kingdom Hearts over Pokémon. A member of the Yu-Gi-Oh! club, Taj’s
-            first personal computer was expressly for the purpose of playing it
-            on an old Dell Machine. After moving into the world of Public Health
-            in college, he found a passion for the ways that data can be used to
-            help people on a population level. He hopes to bring this passion to
-            a new community of coders!
-          </p>
-        </div>
+          </a>
+        </p>
       </div>
-
-      <div class="window four sponsor-modal">
-        <div class="title-bar" id="bar-color">
-          <div class="title-bar-text">sponsors</div>
-          <div class="title-bar-controls">
-            <button aria-label="Minimize"></button>
-            <button aria-label="Maximize"></button>
-            <button class="sponsor-close" aria-label="Close"></button>
-          </div>
-        </div>
-        <div class="window-body contain body-right body-tabs">
-        <div class="four-container">
-        <h4>PHL Code Club Sponsors</h4>
-        <div class="sponsors-container">
-        <a href="https://www.resilientcoders.org/" target="_blank">
-          <Image src={resilient} alt="resilient coders logo" class="sponsors" />
-        </a>
-        <a href="https://posthog.com/" target="_blank">
-        <Image src={posthog} alt="posthog logo" class="sponsors posthog" />
-        </a>
-        </div>
-        </div>
-        </div>
-      </div>
-
-      <div class="window four slides-modal">
-        <div class="title-bar" id="bar-color">
-          <div class="title-bar-text">files</div>
-          <div class="title-bar-controls">
-            <button aria-label="Minimize"></button>
-            <button aria-label="Maximize"></button>
-            <button class="slides-close" aria-label="Close"></button>
-          </div>
-        </div>
-        <div class="window-body contain body-right body-tabs"> 
-         <div class="files-container"> 
-          {files.map(v => (
-              <div key={v} class="file">
-              <Image src={paper} alt="paper" class="file-img" />
-              <a href={`/slides/${v}`}>{v}</a>
-              </div>
-              ))}
-          </div>
-        </div>
-        </div>
-      </div>
-
     </div>
-  </body>
-</html>
+  </div>
+</Desktop>

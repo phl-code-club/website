@@ -1,175 +1,28 @@
 ---
 import "98.css";
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
+import Desktop from "../../layouts/desktop.astro";
+import Window from "../../components/Window.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<"blog">;
 }
 
 // Get all entries from a collection.
 // Requires the name of the collection as an argument.
-const posts = await getCollection('blog');
+const posts = await getCollection("blog");
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <style is:global>
-      :root {
-        --colors-purple: #4a306d;
-        --colors-lavender: #ebdefe;
-        --colors-yellow: #ffeb9a;
-        --colors-red: #9e3167;
-        --colors-pink: #ffcfe5;
-        --colors-blue: #215785;
-        --colors-cyan: #d4e5f6;
-        --colors-violet: #7832d3;
-        --colors-black: #000;
-        --colors-white: #fff;
-        --colors-gray: #262626; 
+<Desktop title="PHL Code Club: Blog">
+  <Window title="blog">
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+          </li>
+        ))
       }
-
-      body {
-        margin: 2rem;
-        box-sizing: border-box;
-        background-color: var(--colors-cyan);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .container {
-        width: 100%
-      }
-
-      .window {
-        background-color: var(--colors-lavender);
-        border-radius: 4px;
-        overflow: hidden;
-        width: 100%;
-      }
-
-      body .title-bar {
-        height: 2rem;
-        padding: 0 0.5rem;
-        border-bottom: 2px solid #ffffff;
-        background: linear-gradient(
-          90deg,
-          var(--colors-purple),
-          var(--colors-violet)
-        );
-      }
-
-      .home-button {
-        margin: 1em;
-      }
-
-      .title-bar-text {
-        font-weight: bold;
-        color: white;
-      }
-
-      .window-body {
-        background-color: var(--colors-lavender);
-        font-size: 16px;
-        padding: 1rem;
-        overflow: auto;
-      }
-
-       .window-body a {
-                color: #000;
-      }
-
-      .body-left,
-      .body-right,
-      .body-tabs {
-        border-left: 2px solid #404040;
-        border-top: 2px solid #404040;
-        border-right: 2px solid #f4f4f4;
-        border-bottom: 2px solid #f4f4f4;
-      }
-
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--colors-cyan);
-  }
-
-  .window {
-    background-color: var(--colors-lavender);
-  }
-
-  .body-left,
-  .body-tabs {
-    background-color: var(--colors-white);
-  }
-
-  .window-body a {
-    color: var(--colors-black);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-        --dark-body-bg: #28153d;
-        --dark-body-tabs-bg: #19082c;
-        --dark-window-bg: #8d67bf;
-        --dark-three-title-bar-bg: #f0f0f0;
-        --dark-three-title-bar-text: #000;
-        --dark-title-bar-start: #030105;
-        --dark-name: #9c6cda;
-  }
-
-  body {
-    color: var(--colors-white);
-    background-color: var(--dark-body-bg);
-  }
-
-  .window-body {
-    background-color: var(--dark-body-tabs-bg);
-  }
-
-  .window {
-    background-color: var(--dark-window-bg);
-  }
-
-  .title-bar {
-    background: linear-gradient(90deg, var(--dark-title-bar-start), var(--colors-violet));
-  }
-
-  .window-body a {
-    color: #c6aeff;
-  }
-
-  a {
-    color: var(--colors-white)
-  }
-}
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="home-button">
-      <a href=`/`>back to home</a>
-
-      </div>
-      <div class="window">
-        <div class="title-bar" id="bar-color">
-          <div class="title-bar-text">slides</div>
-          <div class="title-bar-controls">
-            <button aria-label="Minimize"></button>
-            <button aria-label="Maximize"></button>
-            <button aria-label="Close"></button>
-          </div>
-        </div>
-        <div class="window-body">
-          <ul>
-            {posts.map(post => (
-              <li><a href={`/blog/${post.id}`}>{post.data.title}</a></li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
+    </ul>
+  </Window>
+</Desktop>
