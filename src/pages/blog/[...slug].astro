@@ -1,0 +1,86 @@
+---
+import "98.css";
+import Desktop from "../../layouts/desktop.astro";
+import Window from "../../components/Window.astro";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import FontAwesomeIcon from "../../components/FontAwesomeIcon.astro";
+import {
+  faBluesky,
+  faLinkedin,
+  faMastodon,
+} from "@fortawesome/free-brands-svg-icons";
+import { faCalendar } from "@fortawesome/free-solid-svg-icons";
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+const posts = await getCollection("blog");
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Desktop title={post.data.title}>
+  <Window title="blog post">
+    <div class="list-container">
+      <h4>More Posts</h4>
+      <ul>
+        {
+          posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}`}>{post.data.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="blog-container">
+      <p>Published on: {post.data.pubDate.toDateString()}</p>
+      <Content />
+      <div class="social-line">
+        Follow us:
+        <a href="https://lu.ma/phlcodeclub" target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faCalendar} />
+          Calendar
+        </a>
+        <a
+          href="https://bsky.app/profile/phlcode.club"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FontAwesomeIcon icon={faBluesky} />
+          Bluesky
+        </a>
+        <a
+          href="https://www.linkedin.com/company/phlcodeclub/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FontAwesomeIcon icon={faLinkedin} />
+          Linkedin
+        </a>
+        <a
+          href="https://jawns.club/@phl_code_club"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FontAwesomeIcon icon={faMastodon} />
+          Mastadon
+        </a>
+      </div>
+    </div>
+  </Window>
+</Desktop>

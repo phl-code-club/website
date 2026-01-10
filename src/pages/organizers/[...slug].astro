@@ -1,0 +1,68 @@
+---
+import "98.css";
+import Desktop from "../../layouts/desktop.astro";
+import Window from "../../components/Window.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+interface Props {
+  organizer: CollectionEntry<"organizers">;
+}
+
+export async function getStaticPaths() {
+  const organizers = await getCollection("organizers");
+  return organizers.map((organizer) => ({
+    params: { slug: organizer.id },
+    props: {
+      organizer,
+    },
+  }));
+}
+
+const { organizer } = Astro.props;
+---
+
+<Desktop title={organizer.data.name}>
+  <Window title="organizer">
+    <Image
+      src={organizer.data.photo}
+      alt={`${organizer.data.name} photo`}
+      width={400}
+    />
+    <div>
+      <h2>{organizer.data.name} {organizer.data.emoticon}</h2>
+      <h3>{organizer.data.title}</h3>
+      <p><b>Bio:</b> {organizer.data.bio}</p>
+      <div class="flex">
+        <div>
+          <p><b>Likes:</b></p>
+          <ul class="likes">
+            {organizer.data.likes.map((like) => <li>{like}</li>)}
+          </ul>
+        </div>
+        <div>
+          <p><b>Dislikes:</b></p>
+          <ul class="dislikes">
+            {organizer.data.dislikes.map((dislike) => <li>{dislike}</li>)}
+          </ul>
+        </div>
+        <div>
+          <p><b>Links:</b></p>
+          <ul class="links">
+            {
+              Object.entries(organizer.data.links).map(
+                ([name, { icon, url }]) => (
+                  <li>
+                    <a href={url} target="_blank">
+                      <span style="margin-right: 5px;">{icon}</span> {name}
+                    </a>
+                  </li>
+                ),
+              )
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Window>
+</Desktop>

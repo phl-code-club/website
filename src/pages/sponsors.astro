@@ -1,0 +1,23 @@
+---
+import Desktop from "../layouts/desktop.astro";
+import resilient from "../assets/resilient.png";
+import posthog from "../assets/posthog.png";
+import { Image } from "astro:assets";
+import Window from "../components/Window.astro";
+---
+
+<Desktop title="PHL Code Club: Sponsors">
+  <Window title="sponsors">
+    <div class="four-container">
+      <h4>PHL Code Club Sponsors</h4>
+      <div class="sponsors-container">
+        <a href="https://www.resilientcoders.org/" target="_blank">
+          <Image src={resilient} alt="resilient coders logo" class="sponsors" />
+        </a>
+        <a href="https://posthog.com/" target="_blank">
+          <Image src={posthog} alt="posthog logo" class="sponsors posthog" />
+        </a>
+      </div>
+    </div>
+  </Window>
+</Desktop>

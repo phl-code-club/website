@@ -1,0 +1,591 @@
+---
+import "98.css";
+import Logo from "../assets/capywiz.png";
+import keyboard from "../assets/keyboard.png";
+import calendar from "../assets/calendar.png";
+import email from "../assets/email.png";
+import slides from "../assets/slides.png";
+import sponsor from "../assets/sponsor.png";
+import blog from "../assets/wordpad.png";
+import organizers from "../assets/users.png";
+import home from "../assets/computer.png";
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    {description && <meta name="description" content={description} />}
+    <title>{title}</title>
+    <slot name="head" />
+    <style is:global>
+      :root {
+        --colors-purple: #4a306d;
+        --colors-lavender: #ebdefe;
+        --colors-yellow: #ffeb9a;
+        --colors-red: #9e3167;
+        --colors-pink: #ffcfe5;
+        --colors-blue: #215785;
+        --colors-cyan: #d4e5f6;
+        --colors-violet: #7832d3;
+        --colors-black: #000;
+        --colors-white: #fff;
+        --colors-gray: #262626;
+      }
+
+      @media (prefers-color-scheme: light) {
+        body {
+          background-color: var(--colors-cyan);
+        }
+
+        .window {
+          background-color: var(--colors-lavender);
+        }
+
+        .body-left,
+        .body-tabs {
+          background-color: var(--colors-white);
+        }
+
+        body .three .title-bar {
+          background: var(--colors-gray);
+        }
+
+        .name {
+          color: var(--colors-violet);
+        }
+
+        .icon-text {
+          color: var(--colors-black);
+        }
+      }
+
+      body {
+        margin: 2rem;
+        box-sizing: border-box;
+        background-color: var(--colors-cyan);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        position: relative;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 95rem;
+      }
+
+      .window {
+        background-color: var(--colors-lavender);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      body .title-bar {
+        height: 2rem;
+        padding: 0 0.4rem;
+        border-bottom: 2px solid var(--colors-white);
+        background: linear-gradient(
+          90deg,
+          var(--colors-purple),
+          var(--colors-violet)
+        );
+      }
+
+      .title-bar-text {
+        padding: 0.5rem;
+        font-weight: bold;
+        color: white;
+      }
+
+      .window-body {
+        background-color: var(--colors-lavender);
+        font-size: 16px;
+        padding: 1rem;
+        overflow: auto;
+      }
+
+      .body-left,
+      .body-right,
+      .body-tabs {
+        border-left: 2px solid #404040;
+        border-top: 2px solid #404040;
+        border-right: 2px solid #f4f4f4;
+        border-bottom: 2px solid #f4f4f4;
+      }
+
+      .body-right {
+        height: 100%;
+      }
+
+      .body-tabs {
+        border-left: 2px solid #270c34;
+        border-top: 2px solid #270c34;
+        border-right: 2px solid #e1e1e1;
+        border-bottom: 2px solid #e1e1e1;
+      }
+
+      .body-left,
+      .body-tabs {
+        background-color: var(--colors-white);
+      }
+
+      .left-section {
+        width: 100%;
+        max-width: 30rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .icon-container {
+        display: flex;
+        justify-content: space-evenly;
+        padding-bottom: 1rem;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 800px;
+
+        a {
+          margin-right: 0.5rem;
+          text-decoration: none;
+          text-align: center;
+        }
+      }
+      .icons {
+        width: 2rem;
+        height: 2rem;
+        padding: 0.9rem;
+      }
+      .sponsor,
+      .slides {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .sponsor .icons {
+        width: 3rem;
+        height: 3rem;
+        padding: 0.4rem;
+      }
+
+      .img-contain {
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        max-width: 20em;
+        margin: auto;
+      }
+
+      .background-img {
+        position: absolute;
+        left: 2%;
+        padding: 0;
+        max-width: 20em;
+        bottom: 0%;
+        z-index: -5;
+        margin: 0;
+      }
+
+      .image {
+        width: 100%;
+        height: 30dvh;
+        object-fit: contain;
+        padding: 2rem;
+      }
+
+      .sponsors {
+        width: 100%;
+        height: 12em;
+        object-fit: contain;
+      }
+
+      .image-logo {
+        width: 40%;
+        height: 100%;
+        object-fit: contain;
+        padding: 3rem;
+      }
+
+      .one {
+        margin-bottom: 1rem;
+      }
+
+      .two {
+        flex: 1.5;
+        width: 50%;
+        height: clamp(500px, 90dvh, 70rem);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .three {
+        width: 90%;
+        margin: 0 auto;
+        background-color: var(--colors-gray);
+      }
+
+      .three > .window-body {
+        background-color: var(--colors-black);
+        border-left: 2px solid #404040;
+        border-top: 2px solid #404040;
+        border-right: 2px solid #f4f4f4;
+        border-bottom: 2px solid #f4f4f4;
+        height: 14rem;
+        margin: 0.5em 0;
+      }
+
+      body .three .title-bar {
+        background: var(--colors-gray);
+      }
+
+      .input {
+        display: inline-block;
+        width: 10px;
+        animation: blink 1s step-start infinite;
+        font-weight: 600;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      menu {
+        display: flex;
+        list-style: none;
+        padding: 0;
+      }
+
+      .links {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .organizers {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+      }
+
+      .icon-text {
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .organizers > div {
+        padding: 0 0.5rem;
+      }
+
+      p {
+        font-weight: 400;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        background: white;
+      }
+
+      .name {
+        margin: 1rem 0;
+      }
+
+      .logo {
+        transform: rotate(3deg);
+        height: 12dvh;
+      }
+
+      pre {
+        padding: 0;
+      }
+
+      .four .window-body {
+        height: 75dvh;
+        padding: 0;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .four-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .four-container h4 {
+        text-align: center;
+      }
+
+      .sponsors-container {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .sponsors-container a {
+        margin: 1rem;
+      }
+      dialog {
+        position: fixed;
+        display: none;
+        z-index: 1; /* Sit on top */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 80dvw; /* Full width */
+        overflow: none; /* Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+      }
+
+      .files-container {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        justify-content: start;
+      }
+
+      .file {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+      }
+
+      .file-img {
+        width: 4em;
+        height: auto;
+      }
+
+      @media screen and (min-width: 1300px) {
+        .left-section {
+          max-width: 36rem;
+        }
+      }
+      @media screen and (max-width: 1100px) {
+        .three {
+          width: 100%;
+        }
+        body {
+          display: flex;
+          flex-direction: column-reverse;
+        }
+
+        .three > .window-body {
+          height: 16rem;
+          margin: 1em 0;
+        }
+        .container {
+          flex-direction: column;
+          align-content: center;
+        }
+        .background-img {
+          position: relative;
+          left: 0;
+        }
+        .background-img .image {
+          padding: 2.5rem 0 0;
+        }
+        .left-section,
+        .two {
+          max-width: 100%;
+          width: 100%;
+        }
+
+        .four .window-body {
+          height: 80dvh;
+          justify-content: center;
+        }
+        .sponsor .icons,
+        .icons {
+          width: 55px;
+          height: 55px;
+          padding: 0.9rem;
+        }
+
+        .sponsors {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .sponsors-container {
+          align-content: center;
+          justify-content: center;
+        }
+        .logo {
+          width: 10em;
+          height: 10dvh;
+        }
+        pre {
+          font-size: medium;
+        }
+
+        .icon-text {
+          font-size: 1.4rem;
+        }
+
+        .one,
+        .three,
+        .icon-container,
+        .two {
+          margin-top: 1rem;
+          max-width: unset;
+        }
+
+        p {
+          font-size: 1.4rem;
+        }
+
+        .two {
+          height: 100%;
+        }
+      }
+
+      @media screen and (max-width: 750px) {
+        .left-section {
+          width: 95%;
+        }
+
+        .two {
+          width: 95%;
+        }
+
+        pre {
+          font-size: medium;
+          padding: 0rem;
+        }
+
+        .sponsors {
+          height: 20em;
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --dark-body-bg: #28153d;
+          --dark-body-tabs-bg: #19082c;
+          --dark-window-bg: #8d67bf;
+          --dark-three-title-bar-bg: #f0f0f0;
+          --dark-three-title-bar-text: #000;
+          --dark-title-bar-start: #030105;
+          --dark-name: #c6aeff;
+        }
+
+        body {
+          color: var(--colors-white);
+          background-color: var(--dark-body-bg);
+        }
+
+        .body-left,
+        .body-tabs {
+          background-color: var(--dark-body-tabs-bg);
+        }
+
+        .window {
+          background-color: var(--dark-window-bg);
+        }
+
+        .three {
+          background-color: var(--colors-gray);
+        }
+        body .three .title-bar {
+          background: var(--dark-three-title-bar-bg);
+        }
+
+        body .three .title-bar .title-bar-text {
+          color: var(--dark-three-title-bar-text);
+        }
+
+        .title-bar {
+          background: linear-gradient(
+            90deg,
+            var(--dark-title-bar-start),
+            var(--colors-violet)
+          );
+        }
+
+        .name {
+          color: var(--dark-name);
+        }
+
+        .icon-text {
+          color: #ffffff;
+        }
+
+        p .contact-link {
+          color: #d4e6f3;
+        }
+
+        .window-body a {
+          color: #c6aeff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-img img-contain">
+      <Image class="image" src={Logo} alt="logo" />
+    </div>
+    <div class="container">
+      <div class="icon-container">
+        <a href="/">
+          <Image src={home} alt="computer icon" class="icons" />
+          <p class="icon-text">Home</p>
+        </a>
+        <a href="https://discord.gg/nHgXZEz3UW" target="_blank">
+          <Image src={keyboard} alt="keyboard icon" class="icons" />
+          <p class="icon-text">Discord</p>
+        </a>
+        <a href="https://lu.ma/phlcodeclub" target="_blank">
+          <Image src={calendar} alt="calendar icon" class="icons" />
+          <p class="icon-text">Calendar</p>
+        </a>
+        <a href="mailto:info@phlcode.club" target="_blank">
+          <Image src={email} alt="email icon" class="icons" />
+          <p class="icon-text">Email</p>
+        </a>
+        <a href="/slides">
+          <Image src={slides} alt="slides icon" class="icons" />
+          <p class="icon-text">Slides</p>
+        </a>
+        <a href="/blog">
+          <Image src={blog} alt="blog icon" class="icons" />
+          <p class="icon-text">Blog</p>
+        </a>
+        <a href="/organizers">
+          <Image src={organizers} alt="organizers icon" class="icons" />
+          <p class="icon-text">Organizers</p>
+        </a>
+        <a href="/sponsors">
+          <Image src={sponsor} alt="sponsor icon" class="icons" />
+          <p class="icon-text">Sponsors</p>
+        </a>
+      </div>
+      <slot />
+    </div>
+  </body>
+</html>

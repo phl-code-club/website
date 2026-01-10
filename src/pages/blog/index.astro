@@ -1,0 +1,28 @@
+---
+import "98.css";
+import Desktop from "../../layouts/desktop.astro";
+import Window from "../../components/Window.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+const posts = await getCollection("blog");
+---
+
+<Desktop title="PHL Code Club: Blog">
+  <Window title="blog">
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </Window>
+</Desktop>

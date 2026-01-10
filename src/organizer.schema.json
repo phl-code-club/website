@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "title": "PHL Code Club Organizer",
+  "description": "Requisite info for displaying the organizer page",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "emoticon": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "dislikes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "likes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "properties": {
+          "icon": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "bio",
+    "dislikes",
+    "email",
+    "emoticon",
+    "likes",
+    "links",
+    "name",
+    "photo",
+    "title"
+  ]
+}

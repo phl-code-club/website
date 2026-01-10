@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="window">
+  <div class="title-bar">
+    <div class="title-bar-text">{title}</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <a href="/">
+        <button aria-label="Close"></button>
+      </a>
+    </div>
+  </div>
+  <div class="window-body body-tabs">
+    <slot />
+  </div>
+</div>

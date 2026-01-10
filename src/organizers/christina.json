@@ -1,0 +1,26 @@
+{
+  "$schema": "../organizer.schema.json",
+  "name": "Christina",
+  "bio": "Chris' first experience with coding came from breaking Tumblr themes until she was creating custom layouts. Fast-forward, working in IT and troubleshooting computer issues, her love for problem-solving grew. Now, she combines creativity and technical skills to build beautiful & functional UIs. She hopes to create an inclusive space to share her passion for coding.",
+  "likes": [
+    "Coding with friends",
+    "Lifting Heavy Weights",
+    "Board Games",
+    "Thrifting",
+    "crafts and starting DIY projects i'll never finish",
+    "naps"
+  ],
+  "dislikes": [
+    "loud noises"
+  ],
+  "title": "Chief of the Coding Divas",
+  "photo": "./chris.jpg",
+  "emoticon": "ʕ•ᴥ•ʔ",
+  "email": "christina@phlcode.club",
+  "links": {
+    "website": {
+      "icon": "🔗",
+      "url": "https://cbtalia.com/"
+    }
+  }
+}

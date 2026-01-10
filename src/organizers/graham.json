@@ -1,0 +1,28 @@
+{
+  "$schema": "../organizer.schema.json",
+  "name": "Graham",
+  "bio": "Graham is an all around computer nerd. What started out as a love of\nvideo games, moved into learning how to build computers and getting\ninterested in how they work, to learning to code. Now a software\nengineer, he aims to share his love of computing, especially the\nterminal, and continue learning from everyone he meets.",
+  "likes": [
+    "Terminals",
+    "Ergonomic Keyboards",
+    "Board Games",
+    "My cat, Fritzy",
+    "Data Sovereignty"
+  ],
+  "dislikes": [
+    "GUI's",
+    "Untyped Languages",
+    "Mice (The HID, not the animal)",
+    "Surveilance Capitalism"
+  ],
+  "title": "Chief Terminal Nerd",
+  "photo": "./graham.webp",
+  "emoticon": "ʕ⌐■ᴥ■ʔ",
+  "email": "graham@phlcode.club",
+  "links": {
+    "website": {
+      "icon": "🔗",
+      "url": "https://gvasquez.dev/?utm_source=code-club"
+    }
+  }
+}
