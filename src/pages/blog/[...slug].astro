@@ -1,5 +1,7 @@
 ---
 import "98.css";
+import Desktop from "../../layouts/desktop.astro";
+import Window from "../../components/Window.astro";
 import { getCollection } from "astro:content";
 import { render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
@@ -20,251 +22,65 @@ const posts = await getCollection("blog");
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((p) => ({
-    params: { slug: p.id },
-    props: p,
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
   }));
 }
 
-const post = Astro.props;
+const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <style>
-      :root {
-        --colors-lavender: #ebdefe;
-        --colors-yellow: #ffeb9a;
-        --colors-red: #9e3167;
-        --colors-pink: #ffcfe5;
-        --colors-blue: #215785;
-        --colors-cyan: #d4e5f6;
-        --colors-violet: #7832d3;
-        --colors-black: #000;
-        --colors-white: #fff;
-        --colors-gray: #262626;
-      }
-
-      body {
-        margin: 2rem;
-        box-sizing: border-box;
-        background-color: var(--colors-cyan);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .container {
-        width: 100%;
-      }
-
-      .window {
-        background-color: var(--colors-lavender);
-        border-radius: 4px;
-        overflow: hidden;
-        width: 100%;
-      }
-
-      body .title-bar {
-        height: 2rem;
-        padding: 0 0.5rem;
-        border-bottom: 2px solid #ffffff;
-        background: linear-gradient(
-          90deg,
-          var(--colors-purple),
-          var(--colors-violet)
-        );
-      }
-
-      .home-button {
-        margin: 1em;
-      }
-
-      .title-bar-text {
-        font-weight: bold;
-        color: white;
-      }
-
-      .window-body {
-        background-color: var(--colors-lavender);
-        font-size: 16px;
-        padding: 1rem;
-        overflow: auto;
-      }
-
-      .window-body a {
-        color: #000;
-      }
-
-      .body-left,
-      .body-right,
-      .body-tabs {
-        border-left: 2px solid #404040;
-        border-top: 2px solid #404040;
-        border-right: 2px solid #f4f4f4;
-        border-bottom: 2px solid #f4f4f4;
-      }
-
-      @media (prefers-color-scheme: light) {
-        body {
-          background-color: var(--colors-cyan);
+<Desktop title={post.data.title}>
+  <Window title="blog post">
+    <div class="list-container">
+      <h4>More Posts</h4>
+      <ul>
+        {
+          posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}`}>{post.data.title}</a>
+            </li>
+          ))
         }
+      </ul>
+    </div>
 
-        .window {
-          background-color: var(--colors-lavender);
-        }
-
-        .body-left,
-        .body-tabs {
-          background-color: var(--colors-white);
-        }
-
-        .window-body a {
-          color: var(--colors-black);
-        }
-
-        .list-container {
-          border-right: 1.5px solid #000;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --dark-body-bg: #28153d;
-          --dark-body-tabs-bg: #19082c;
-          --dark-window-bg: #8d67bf;
-          --dark-three-title-bar-bg: #f0f0f0;
-          --dark-three-title-bar-text: #000;
-          --dark-title-bar-start: #030105;
-          --dark-name: #9c6cda;
-        }
-
-        body {
-          color: var(--colors-white);
-          background-color: var(--dark-body-bg);
-        }
-
-        .window-body {
-          background-color: var(--dark-body-tabs-bg);
-        }
-
-        .window {
-          background-color: var(--dark-window-bg);
-        }
-
-        .title-bar {
-          background: linear-gradient(
-            90deg,
-            var(--dark-title-bar-start),
-            var(--colors-violet)
-          );
-        }
-
-        .window-body a {
-          color: #c6aeff;
-        }
-
-        a {
-          color: var(--colors-white);
-        }
-
-        .list-container {
-          border-right: 1.5px solid #fff;
-        }
-      }
-      .window-body {
-        display: flex;
-        flex-direction: row;
-      }
-
-      .list-container,
-      .blog-container {
-        padding: 0 1em;
-      }
-
-      ul {
-        padding-inline-start: 1em;
-      }
-
-      .social-line {
-        font-size: 1.25rem;
-      }
-
-      .list-container {
-        min-width: 200px;
-      }
-
-      .blog-container {
-        max-width: 800px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="window">
-      <div class="title-bar" id="bar-color">
-        <div class="title-bar-text">blog post</div>
-        <div class="title-bar-controls">
-          <button aria-label="Minimize"></button>
-          <button aria-label="Maximize"></button>
-          <button aria-label="Close"></button>
-        </div>
-      </div>
-      <div class="window-body">
-        <div class="list-container">
-          <h4>More Posts</h4>
-          <ul>
-            {
-              posts.map((post) => (
-                <li>
-                  <a href={`/blog/${post.id}`}>{post.data.title}</a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div class="blog-container">
-          <p>Published on: {post.data.pubDate.toDateString()}</p>
-          <Content />
-          <div class="social-line">
-            Follow us:
-            <a
-              href="https://lu.ma/phlcodeclub"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faCalendar} />
-              Calendar
-            </a>
-            <a
-              href="https://bsky.app/profile/phlcode.club"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faBluesky} />
-              Bluesky
-            </a>
-            <a
-              href="https://www.linkedin.com/company/phlcodeclub/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faLinkedin} />
-              Linkedin
-            </a>
-            <a
-              href="https://jawns.club/@phl_code_club"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faMastodon} />
-              Mastadon
-            </a>
-          </div>
-        </div>
+    <div class="blog-container">
+      <p>Published on: {post.data.pubDate.toDateString()}</p>
+      <Content />
+      <div class="social-line">
+        Follow us:
+        <a href="https://lu.ma/phlcodeclub" target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faCalendar} />
+          Calendar
+        </a>
+        <a
+          href="https://bsky.app/profile/phlcode.club"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FontAwesomeIcon icon={faBluesky} />
+          Bluesky
+        </a>
+        <a
+          href="https://www.linkedin.com/company/phlcodeclub/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FontAwesomeIcon icon={faLinkedin} />
+          Linkedin
+        </a>
+        <a
+          href="https://jawns.club/@phl_code_club"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FontAwesomeIcon icon={faMastodon} />
+          Mastadon
+        </a>
       </div>
     </div>
-  </body>
-</html>
+  </Window>
+</Desktop>

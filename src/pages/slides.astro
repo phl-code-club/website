@@ -1,0 +1,24 @@
+---
+import Desktop from "../layouts/desktop.astro";
+import Window from "../components/Window.astro";
+import paper from "../assets/paper.png";
+import { Image } from "astro:assets";
+let files = Object.keys(
+  import.meta.glob("/public/slides/*.pdf", { eager: true }),
+).map((v) => v.replace("/public/slides/", ""));
+---
+
+<Desktop title="PHL Code Club: Slides">
+  <Window title="slides">
+    <div class="files-container">
+      {
+        files.map((v) => (
+          <div class="file">
+            <Image src={paper} alt="paper" class="file-img" />
+            <a href={`/slides/${v}`}>{v}</a>
+          </div>
+        ))
+      }
+    </div>
+  </Window>
+</Desktop>
