@@ -1,0 +1,30 @@
+---
+import "98.css";
+import Desktop from "../../layouts/desktop.astro";
+import Window from "../../components/Window.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+interface Props {
+  post: CollectionEntry<"organizers">;
+}
+
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+const organizers = await getCollection("organizers");
+---
+
+<Desktop title="PHL Code Club: Organizers">
+  <Window title="organizers">
+    <ul>
+      {
+        organizers.map((organizer) => (
+          <li style="line-height: 1.5rem;">
+            <a href={`/organizers/${organizer.id}`}>
+              {organizer.data.name} {organizer.data.emoticon}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Window>
+</Desktop>

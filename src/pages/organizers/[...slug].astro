@@ -1,0 +1,99 @@
+---
+import "98.css";
+import Desktop from "../../layouts/desktop.astro";
+import Window from "../../components/Window.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+interface Props {
+  organizer: CollectionEntry<"organizers">;
+}
+
+export async function getStaticPaths() {
+  const organizers = await getCollection("organizers");
+  return organizers.map((organizer) => ({
+    params: { slug: organizer.id },
+    props: {
+      organizer,
+    },
+  }));
+}
+
+const { organizer } = Astro.props;
+---
+
+<Desktop title={organizer.data.name}>
+  <Window title="organizer">
+    <div class="organizer-bust">
+      <Image
+        src={organizer.data.photo}
+        alt={`${organizer.data.name} photo`}
+        width={400}
+        height={420}
+        style={organizer.data.name === "Christina"
+          ? "object-position: top;"
+          : ""}
+      />
+      <div class="organizer-bust-titles">
+        <h2>{organizer.data.name} {organizer.data.emoticon}</h2>
+        <h3>{organizer.data.title}</h3>
+        <div>
+          <p><b>Likes:</b></p>
+          <ul class="likes">
+            {organizer.data.likes.map((like) => <li>{like}</li>)}
+          </ul>
+        </div>
+        <div>
+          <p><b>Dislikes:</b></p>
+          <ul class="dislikes">
+            {organizer.data.dislikes.map((dislike) => <li>{dislike}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p><b>Bio:</b> {organizer.data.bio}</p>
+      <div>
+        <p><b>Links:</b></p>
+        <ul class="links">
+          {
+            Object.entries(organizer.data.links).map(
+              ([name, { icon, url }]) => (
+                <li>
+                  <a href={url} target="_blank">
+                    <span style="margin-right: 5px;">{icon}</span> {name}
+                  </a>
+                </li>
+              ),
+            )
+          }
+        </ul>
+      </div>
+    </div>
+  </Window>
+</Desktop>
+
+<style is:global>
+  .window {
+    max-width: 1000px;
+  }
+
+  .window-body {
+    font-size: 1.125rem;
+  }
+
+  .organizer-bust {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    img {
+      border: ridge;
+      object-fit: cover;
+    }
+  }
+  .organizer-bust-titles {
+    h2 {
+      line-height: 2.75rem;
+    }
+  }
+</style>
