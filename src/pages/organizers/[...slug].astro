@@ -24,14 +24,22 @@ const { organizer } = Astro.props;
 
 <Desktop title={organizer.data.name}>
   <Window title="organizer">
-    <Image
-      src={organizer.data.photo}
-      alt={`${organizer.data.name} photo`}
-      width={400}
-    />
+    <div class="organizer-bust">
+      <Image
+        src={organizer.data.photo}
+        alt={`${organizer.data.name} photo`}
+        width={400}
+        height={420}
+        style={organizer.data.name === "Christina"
+          ? "object-position: top;"
+          : ""}
+      />
+      <div class="organizer-bust-titles">
+        <h2>{organizer.data.name} {organizer.data.emoticon}</h2>
+        <h3>{organizer.data.title}</h3>
+      </div>
+    </div>
     <div>
-      <h2>{organizer.data.name} {organizer.data.emoticon}</h2>
-      <h3>{organizer.data.title}</h3>
       <p><b>Bio:</b> {organizer.data.bio}</p>
       <div class="flex">
         <div>
@@ -57,7 +65,7 @@ const { organizer } = Astro.props;
                       <span style="margin-right: 5px;">{icon}</span> {name}
                     </a>
                   </li>
-                ),
+                )
               )
             }
           </ul>
@@ -66,3 +74,22 @@ const { organizer } = Astro.props;
     </div>
   </Window>
 </Desktop>
+
+<style>
+  .organizer-bust {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    img {
+      border: ridge;
+      object-fit: cover;
+    }
+  }
+  .organizer-bust-titles {
+    margin-top: 4rem;
+    border: double;
+    height: fit-content;
+    padding: 1rem;
+    background: #215d92;
+  }
+</style>
