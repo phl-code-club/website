@@ -72,18 +72,14 @@ const { title, description } = Astro.props;
         margin: 2rem;
         box-sizing: border-box;
         background-color: var(--colors-cyan);
-        display: flex;
-        justify-content: center;
-        align-items: center;
       }
 
       .container {
         position: relative;
         display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
+        flex-direction: row;
         justify-content: center;
-        max-width: 95rem;
+        height: calc(100dvh - 4rem);
       }
 
       .window {
@@ -148,13 +144,18 @@ const { title, description } = Astro.props;
         flex-direction: column;
       }
 
+      main {
+        margin: 0 auto;
+      }
+
       .icon-container {
         display: flex;
+        flex-direction: column;
+        flex-shrink: 1;
         justify-content: space-evenly;
         padding-bottom: 1rem;
         flex-wrap: wrap;
-        width: 100%;
-        max-width: 800px;
+        margin-right: 1rem;
 
         a {
           margin-right: 0.5rem;
@@ -189,18 +190,18 @@ const { title, description } = Astro.props;
       }
 
       .background-img {
-        position: absolute;
-        left: 2%;
+        position: fixed;
+        right: -1rem;
         padding: 0;
         max-width: 20em;
-        bottom: 0%;
+        bottom: -1rem;
         z-index: -5;
-        margin: 0;
+        margin: auto;
       }
 
       .image {
         width: 100%;
-        height: 30dvh;
+        height: fit-content;
         object-fit: contain;
         padding: 2rem;
       }
@@ -242,7 +243,6 @@ const { title, description } = Astro.props;
         border-top: 2px solid #404040;
         border-right: 2px solid #f4f4f4;
         border-bottom: 2px solid #f4f4f4;
-        height: 14rem;
         margin: 0.5em 0;
       }
 
@@ -385,12 +385,12 @@ const { title, description } = Astro.props;
         }
       }
       @media screen and (max-width: 1100px) {
+        .icon-container {
+          flex-direction: row;
+        }
+
         .three {
           width: 100%;
-        }
-        body {
-          display: flex;
-          flex-direction: column-reverse;
         }
 
         .three > .window-body {
@@ -547,9 +547,6 @@ const { title, description } = Astro.props;
     </style>
   </head>
   <body>
-    <div class="background-img img-contain">
-      <Image class="image" src={Logo} alt="logo" />
-    </div>
     <div class="container">
       <div class="icon-container">
         <a href="/">
@@ -585,7 +582,12 @@ const { title, description } = Astro.props;
           <p class="icon-text">Sponsors</p>
         </a>
       </div>
-      <slot />
+      <main>
+        <slot />
+      </main>
+      <div class="background-img img-contain">
+        <Image class="image" src={Logo} alt="logo" />
+      </div>
     </div>
   </body>
 </html>

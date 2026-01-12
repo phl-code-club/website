@@ -37,11 +37,6 @@ const { organizer } = Astro.props;
       <div class="organizer-bust-titles">
         <h2>{organizer.data.name} {organizer.data.emoticon}</h2>
         <h3>{organizer.data.title}</h3>
-      </div>
-    </div>
-    <div>
-      <p><b>Bio:</b> {organizer.data.bio}</p>
-      <div class="flex">
         <div>
           <p><b>Likes:</b></p>
           <ul class="likes">
@@ -54,28 +49,39 @@ const { organizer } = Astro.props;
             {organizer.data.dislikes.map((dislike) => <li>{dislike}</li>)}
           </ul>
         </div>
-        <div>
-          <p><b>Links:</b></p>
-          <ul class="links">
-            {
-              Object.entries(organizer.data.links).map(
-                ([name, { icon, url }]) => (
-                  <li>
-                    <a href={url} target="_blank">
-                      <span style="margin-right: 5px;">{icon}</span> {name}
-                    </a>
-                  </li>
-                )
-              )
-            }
-          </ul>
-        </div>
+      </div>
+    </div>
+    <div>
+      <p><b>Bio:</b> {organizer.data.bio}</p>
+      <div>
+        <p><b>Links:</b></p>
+        <ul class="links">
+          {
+            Object.entries(organizer.data.links).map(
+              ([name, { icon, url }]) => (
+                <li>
+                  <a href={url} target="_blank">
+                    <span style="margin-right: 5px;">{icon}</span> {name}
+                  </a>
+                </li>
+              ),
+            )
+          }
+        </ul>
       </div>
     </div>
   </Window>
 </Desktop>
 
-<style>
+<style is:global>
+  .window {
+    max-width: 1000px;
+  }
+
+  .window-body {
+    font-size: 1.125rem;
+  }
+
   .organizer-bust {
     display: flex;
     justify-content: center;
@@ -86,10 +92,8 @@ const { organizer } = Astro.props;
     }
   }
   .organizer-bust-titles {
-    margin-top: 4rem;
-    border: double;
-    height: fit-content;
-    padding: 1rem;
-    background: #215d92;
+    h2 {
+      line-height: 2.75rem;
+    }
   }
 </style>
