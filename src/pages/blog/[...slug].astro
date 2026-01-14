@@ -40,7 +40,7 @@ const author = await getEntry(post.data.author);
     }
     .window-body {
       height: calc(100% - 3rem - 8px);
-      padding: 0 16px;
+      padding: 0;
       display: flex;
       overflow: hidden;
     }
@@ -48,11 +48,12 @@ const author = await getEntry(post.data.author);
     .list-container {
       max-width: 300px;
       margin-right: 1rem;
+      padding-left: 1rem;
       border-right: 1px solid var(--colors-lavender);
     }
 
     .blog-container {
-      overflow: scroll;
+      overflow: auto;
       max-width: 1000px;
       padding: 16px 0;
     }

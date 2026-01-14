@@ -152,13 +152,14 @@ const { title, description } = Astro.props;
         display: flex;
         flex-direction: column;
         flex-shrink: 1;
-        justify-content: space-evenly;
+        justify-content: start;
         padding-bottom: 1rem;
         flex-wrap: wrap;
         margin-right: 1rem;
-
-        a {
-          margin-right: 0.5rem;
+        width: 100%;
+        max-width: calc(2 * (32px + 4rem));
+        
+      a {
           text-decoration: none;
           text-align: center;
         }
@@ -166,7 +167,7 @@ const { title, description } = Astro.props;
       .icons {
         width: 2rem;
         height: 2rem;
-        padding: 0.9rem;
+        padding: 1rem;
       }
       .sponsor,
       .slides {
@@ -186,7 +187,7 @@ const { title, description } = Astro.props;
         display: flex;
         width: 100%;
         max-width: 20em;
-        margin: auto;
+        margin: 1rem auto;
       }
 
       .background-img {
@@ -232,7 +233,8 @@ const { title, description } = Astro.props;
       }
 
       .three {
-        width: 90%;
+        width: 100%;
+        max-width: 37em;
         margin: 0 auto;
         background-color: var(--colors-gray);
       }
@@ -243,7 +245,6 @@ const { title, description } = Astro.props;
         border-top: 2px solid #404040;
         border-right: 2px solid #f4f4f4;
         border-bottom: 2px solid #f4f4f4;
-        margin: 0.5em 0;
       }
 
       body .three .title-bar {
@@ -381,12 +382,24 @@ const { title, description } = Astro.props;
 
       @media screen and (min-width: 1300px) {
         .left-section {
-          max-width: 36rem;
+          max-width: 28rem;
         }
       }
-      @media screen and (max-width: 1100px) {
+      @media screen and (max-width: 1200px) {
+
+        main {
+          margin: auto 0;
+        }
+
+        .window {
+          max-width: unset;
+          width: 100%;
+        }
         .icon-container {
           flex-direction: row;
+          justify-content: space-evenly;
+          max-width: unset;
+          margin: 1rem 0;
         }
 
         .three {
@@ -395,7 +408,6 @@ const { title, description } = Astro.props;
 
         .three > .window-body {
           height: 16rem;
-          margin: 1em 0;
         }
         .container {
           flex-direction: column;
@@ -451,7 +463,6 @@ const { title, description } = Astro.props;
 
         .one,
         .three,
-        .icon-container,
         .two {
           margin-top: 1rem;
           max-width: unset;

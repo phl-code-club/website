@@ -24,6 +24,7 @@ const { organizer } = Astro.props;
 
 <Desktop title={organizer.data.name}>
   <Window title="organizer">
+  <div classs="contain">
     <div class="organizer-bust">
       <Image
         src={organizer.data.photo}
@@ -70,12 +71,16 @@ const { organizer } = Astro.props;
         </ul>
       </div>
     </div>
+  </div>
   </Window>
 </Desktop>
 
 <style is:global>
+
   .window {
     max-width: 1000px;
+    height: auto;
+    margin: auto;
   }
 
   .window-body {
