@@ -1,0 +1,6 @@
+{
+  "$schema": "../../../.astro/collections/external_blogs.schema.json",
+  "author": "graham",
+  "name": "gvasquez.dev",
+  "feedURL": "https://gvasquez.dev/rss.xml"
+}
