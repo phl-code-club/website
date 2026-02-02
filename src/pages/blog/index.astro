@@ -2,106 +2,10 @@
 import "98.css";
 import Desktop from "../../layouts/desktop.astro";
 import Window from "../../components/Window.astro";
-import {
-  getCollection,
-  type CollectionEntry,
-  type ReferenceDataEntry,
-} from "astro:content";
-import Parser, { type Output } from "rss-parser";
-const parser = new Parser();
-
-type PostListItem = {
-  title: string;
-  link: string;
-  pubDate: Date;
-  summary?: string;
-  author?: string | CollectionEntry<"organizers">;
-  external: boolean;
-};
-
-type ExtraKeys = {
-  url: string;
-  author?: CollectionEntry<"organizers">;
-};
-
-const organizers = await getCollection("organizers").then((org) =>
-  org.reduce<Record<string, any>>((acc, curr) => {
-    acc[curr.id] = curr;
-    return acc;
-  }, {}),
-);
-
-const external = await getCollection("external_blogs");
-const results = await Promise.allSettled(
-  external.map((b) =>
-    parser.parseURL(b.data.feedURL).then((result) => ({
-      ...result,
-      items: result.items.map((item) => ({
-        ...item,
-        url: b.data.feedURL,
-        author: b.data.author && organizers[b.data.author.id],
-      })),
-    })),
-  ),
-);
-const { success: feeds, error: feedErrors } = results.reduce<{
-  success: Output<ExtraKeys>[];
-  error: Error[];
-}>(
-  (acc, curr, i) => {
-    switch (curr.status) {
-      case "fulfilled":
-        acc.success.push(curr.value);
-        break;
-      case "rejected":
-        acc.error.push(
-          new Error(`Error fetching URL: ${external[i].data.feedURL}`, {
-            cause: curr.reason,
-          }),
-        );
-    }
-    return acc;
-  },
-  { success: [], error: [] },
-);
-
-if (feedErrors.length > 0) {
-  console.error(
-    `There were ${feedErrors.length} error fetching external blogs: ${JSON.stringify(feedErrors)}`,
-  );
-}
-
-const feedPosts = feeds
-  .flatMap<Output<ExtraKeys>["items"][0]>((feed) => feed.items)
-  .map<PostListItem | null>(
-    ({ title, link, pubDate, summary, creator, author }) =>
-      title && link && pubDate
-        ? {
-            title,
-            link,
-            summary,
-            pubDate: new Date(pubDate),
-            external: true,
-            author: author ?? creator,
-          }
-        : null,
-  )
-  .filter((item): item is PostListItem => !!item);
-
-// Get all entries from a collection.
-// Requires the name of the collection as an argument.
-const posts = await getCollection("blog").then((posts) =>
-  posts
-    .map<PostListItem>((p) => ({
-      title: p.data.title,
-      link: `/blog/${p.id}`,
-      pubDate: p.data.pubDate,
-      external: false,
-      author: organizers[p.data.author.id],
-    }))
-    .concat(feedPosts)
-    .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime()),
-);
+import FontAwesomeIcon from "../../components/FontAwesomeIcon.astro";
+import { getPostsIncludingExternal } from "../../lib/get-posts-including-external";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+const posts = await getPostsIncludingExternal();
 ---
 
 <Desktop title="PHL Code Club: Blog">
@@ -116,7 +20,12 @@ const posts = await getCollection("blog").then((posts) =>
                 class="post-title"
                 target={post.external ? "_blank" : undefined}
               >
-                <h1>{post.title}</h1>
+                <h1>
+                  {post.title}
+                  {post.external && (
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                  )}
+                </h1>
               </a>
               <h2 class="subtitle">
                 Posted on {post.pubDate.toDateString()}
@@ -126,7 +35,7 @@ const posts = await getCollection("blog").then((posts) =>
                     post.author
                   ) : (
                     <a href={`/organizers/${post.author.id}`}>
-                      {post.author.data.name}
+                      {post.author.data.name}{" "}
                     </a>
                   ))}
               </h2>
@@ -155,11 +64,12 @@ const posts = await getCollection("blog").then((posts) =>
   .subtitle {
     font-size: 1.25rem;
     margin: 0 0.25rem;
+    margin-bottom: 0.5rem;
   }
 
   .post {
     margin: 1rem 0;
-    padding: 0.5rem;
+    padding: 1rem;
     border: 2px solid var(--colors-lavender);
     border-radius: 2px;
   }
