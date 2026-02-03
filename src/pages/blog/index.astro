@@ -2,15 +2,10 @@
 import "98.css";
 import Desktop from "../../layouts/desktop.astro";
 import Window from "../../components/Window.astro";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
-interface Props {
-  post: CollectionEntry<"blog">;
-}
-
-// Get all entries from a collection.
-// Requires the name of the collection as an argument.
-const posts = await getCollection("blog");
+import FontAwesomeIcon from "../../components/FontAwesomeIcon.astro";
+import { getPostsIncludingExternal } from "../../lib/get-posts-including-external";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+const posts = await getPostsIncludingExternal();
 ---
 
 <Desktop title="PHL Code Club: Blog">
@@ -19,10 +14,63 @@ const posts = await getCollection("blog");
       {
         posts.map((post) => (
           <li>
-            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+            <div class="post">
+              <a
+                href={post.link}
+                class="post-title"
+                target={post.external ? "_blank" : undefined}
+              >
+                <h1>
+                  {post.title}
+                  {post.external && (
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                  )}
+                </h1>
+              </a>
+              <h2 class="subtitle">
+                Posted on {post.pubDate.toDateString()}
+                {post.author && " by "}
+                {post.author &&
+                  (typeof post.author === "string" ? (
+                    post.author
+                  ) : (
+                    <a href={`/organizers/${post.author.id}`}>
+                      {post.author.data.name}{" "}
+                    </a>
+                  ))}
+              </h2>
+            </div>
           </li>
         ))
       }
     </ul>
   </Window>
 </Desktop>
+
+<style is:global>
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .post-title {
+    margin: 0 0.5rem;
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    margin: 0 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 2px solid var(--colors-lavender);
+    border-radius: 2px;
+  }
+</style>

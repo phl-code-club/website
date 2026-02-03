@@ -11,13 +11,15 @@ import {
   faLinkedin,
   faMastodon,
 } from "@fortawesome/free-brands-svg-icons";
-import { faCalendar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowUpRightFromSquare,
+  faCalendar,
+} from "@fortawesome/free-solid-svg-icons";
 import { getEntry } from "astro:content";
+import { getPostsIncludingExternal } from "../../lib/get-posts-including-external";
 interface Props {
   post: CollectionEntry<"blog">;
 }
-
-const posts = await getCollection("blog");
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -30,6 +32,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const author = await getEntry(post.data.author);
+const posts = await getPostsIncludingExternal();
 ---
 
 <head>
@@ -47,15 +50,23 @@ const author = await getEntry(post.data.author);
 
     .list-container {
       max-width: 300px;
-      margin-right: 1rem;
-      padding-left: 1rem;
+      min-width: 150px;
+      margin: 0 1rem;
       border-right: 1px solid var(--colors-lavender);
+
+      ul {
+        padding: 0 1rem;
+      }
+
+      li {
+        margin: 0.5rem 0;
+      }
     }
 
     .blog-container {
       overflow: auto;
       max-width: 1000px;
-      padding: 16px 0;
+      padding: 1rem 0;
     }
 
     img {
@@ -77,6 +88,7 @@ const author = await getEntry(post.data.author);
 
       .blog-container {
         margin-bottom: 1rem;
+        padding: 1rem;
       }
 
       .list-container {
@@ -94,11 +106,22 @@ const author = await getEntry(post.data.author);
       <h4>More Posts</h4>
       <ul>
         {
-          posts.map((post) => (
-            <li>
-              <a href={`/blog/${post.id}`}>{post.data.title}</a>
-            </li>
-          ))
+          posts
+            .filter((p) => p.id !== post.id)
+            .map((post) => (
+              <li>
+                <a
+                  href={post.link}
+                  class="post-title"
+                  target={post.external ? "_blank" : undefined}
+                >
+                  {post.title}
+                  {post.external && (
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                  )}
+                </a>
+              </li>
+            ))
         }
       </ul>
     </div>

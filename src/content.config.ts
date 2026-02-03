@@ -7,18 +7,26 @@ import { glob } from 'astro/loaders';
 
 // 3. Import Zod
 import { z } from 'astro/zod';
+import { rssSchema } from '@astrojs/rss';
 
 // 4. Define your collection(s)
 const blog = defineCollection({
-  loader: glob({ pattern: "**/*.md(x)", base: "./src/blog" }),
-  schema: z.object({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/blog" }),
+  schema: rssSchema.omit({ title: true, author: true, pubDate: true, }).extend({
     title: z.string(),
-    summary: z.string(),
-    pubDate: z.coerce.date(),
     author: reference("organizers"),
-    tags: z.array(z.string()).optional()
+    pubDate: z.coerce.date()
   })
 });
+
+const external_blogs = defineCollection({
+  loader: glob({ pattern: "*.json", base: "./src/blog/external" }),
+  schema: z.object({
+    name: z.string(),
+    feedURL: z.string().url(),
+    author: reference("organizers").optional()
+  })
+})
 
 const organizers = defineCollection({
   loader: glob({ pattern: "**/*.json", base: "./src/organizers" }),
@@ -39,4 +47,4 @@ const organizers = defineCollection({
 });
 
 // 5. Export a single `collections` object to register your collection(s)
-export const collections = { blog, organizers };
+export const collections = { blog, organizers, external_blogs };

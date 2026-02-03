@@ -1,0 +1,12 @@
+name: Sync Site
+
+on:
+  schedule:
+    - cron: "0 12 * * *"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - run: curl -d "" ${{secrets.CLOUDFLARE_RESYNC_WEBHOOK_URL}}
