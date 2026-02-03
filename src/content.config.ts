@@ -11,7 +11,7 @@ import { rssSchema } from '@astrojs/rss';
 
 // 4. Define your collection(s)
 const blog = defineCollection({
-  loader: glob({ pattern: "**/*.md(x)", base: "./src/blog" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/blog" }),
   schema: rssSchema.omit({ title: true, author: true, pubDate: true, }).extend({
     title: z.string(),
     author: reference("organizers"),
