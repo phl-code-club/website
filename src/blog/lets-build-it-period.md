@@ -5,7 +5,7 @@ pubDate: 2026-02-01
 author: taj
 ---
 
-Going to try a new format for today's blog. Announcements ->  TLDR ->  long form content. I'm a yapper, so here's your chance to get in and get out.
+Going to try a new format for today's blog. Announcements -> TLDR -> long form content. I'm a yapper, so here's your chance to get in and get out.
 
 ### ANNOUNCEMENTS
 
@@ -14,7 +14,7 @@ Going to try a new format for today's blog. Announcements ->  TLDR ->  long form
 - We will be doing socials on the first Wednesday of the month. Keep an eye on [Bluesky](https://bsky.app/profile/phlcode.club) and [Discord](https://discord.com/invite/nHgXZEz3UW) for that.
 - PHL Code Club is now incorporated!
 
-## TLDR: 
+## TLDR
 
 On January 28th, We did an event called "Let's Build it {period}" . For the event, people were tasked to create something using the [SEPTA API](https://www3.septa.org/) and encouraged to share it at the end. After a little pizza and socializing , we gave users an hour to come up with something - anything! Some people made CLI wrappers, while others went with cool data visualizations. We had around 10 people volunteer to present what they created! (This part was extra cool). Afterwards, we did a raffle for some Post Hog Merch!
 
@@ -31,11 +31,12 @@ This event was all about getting back to building. We had a great time doing soc
 
 For this event, we told the group to use the SEPTA API to build ... something. Literally anything.
 To get things started, we provided a few suggestions for projects:
+
 - A small frontend that uses pictures of cats to track buses on a
-map
+  map
 - A cli for fetching current information
--  A chart that shows the average heading of all buses on a route
--  A wrapper API (Like Is [SEPTA Fucked?](https://isseptafucked.com/api-docs/))
+- A chart that shows the average heading of all buses on a route
+- A wrapper API (Like Is [SEPTA Fucked?](https://isseptafucked.com/api-docs/))
 
 After the suggestions went up, we gave everyone the option to pair up or code solo. From there, we set a timer for 1 hour and 15 minutes, then let everyone loose.
 
@@ -43,15 +44,15 @@ When the hour was up we provided time to present projects.
 
 Here are a few quotes and info from those brave enough to present:
 
-![Richard's Project](../assets/events/january-2026/Ragman.jpeg)  
-  
+![Richard's Project](../assets/events/january-2026/Ragman.jpeg)
+
 **Richard** - Made an app to tell us if the trolley is on time - and uh, do we actually believe Sept when the api returns yes? Spoiler, no we don't.
 
 ![Matt's Central Nervous System](../assets/events/january-2026/Matt_Central_Nerve.jpeg)
 
 **Matt** - Matt told us that he "slop coded something" - and it turned out to be really cool. We all enjoyed looking at the SEPTA rail network as if it were the nervous system
 
-![Vishnu's Bus Tracker](../assets/events/january-2026/Vishnue_SEPTA_tracker.jpeg)
+![Vishnu's Bus Tracker](../assets/events/january-2026/Vishnue_Septa_tracker.jpeg)
 
 **Vishnu** - "If you had realtime data but properly visualized".
 
@@ -63,7 +64,7 @@ Here are a few quotes and info from those brave enough to present:
 
 **Graham B (not organizer Graham) & Jessie** - made an app to find the closest buses at current locations
 
-![Ben Found The Party](../assets/events/january-2026/SEPTAParty.jpeg)
+![Ben Found The Party](../assets/events/january-2026/SeptaParty.jpeg)
 
 **Ben** - Terminal app that finds both the buses that are furthest away from each other and the two closest to each other. Interestingly, this led to finding what he dubbed the 'SEPTA party'. That is - 91 buses, trams, and trains coalescing at the reading terminal market! Maybe they know something we don't!
 
@@ -76,11 +77,9 @@ arrivals and departures of buses from specified locations. Notably, everyone agr
 
 **Zephyr** - Our resident indie web host. He went down the documentation rabbit hole but still manage to pull of the sweet tracker.
 
-
 We raffled off some awesome merch from PostHog as well. Take a look:
 
 ![MerchPic](../assets/events/january-2026/MerchPic.jpg)
-
 
 Huge thank you to everyone that came out. <3
 Ever grateful,
