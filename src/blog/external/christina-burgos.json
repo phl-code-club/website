@@ -1,0 +1,6 @@
+{
+  "$schema": "../../../.astro/collections/external_blogs.schema.json",
+  "author": "christina",
+  "name": "cbtalia.com",
+  "feedURL": "https://www.cbtalia.com/rss.xml"
+}
