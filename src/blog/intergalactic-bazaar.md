@@ -83,13 +83,13 @@ In no particular order:
 
 And of course thank you to our sponsors:
 
-Akamai
+[Akamai](https://akamai.com)
 
-[![Akamai](../assets/akamai.png)](https://akamai.com)
+[![Akamai Logo](../assets/events/may-2026/akamai.png)](https://akamai.com)
 
-Resilient Coders
+[Resilient Coders](https://resilientcoders.org)
 
-[![Resilient](../assets/resilient.png)](https://resilientcoders.org)
+[![Resilient Coders Logo](../assets/events/may-2026/resilient.png)](https://resilientcoders.org)
 
 XoXo,
 
