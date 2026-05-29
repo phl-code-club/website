@@ -8,6 +8,14 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 const posts = await getPostsIncludingExternal();
 ---
 
+<style>
+  .blog-title {
+    font-size: 1.8em;
+  }
+  .blog-icon {
+    font-size: 0.8em;
+  }
+</style>
 <Desktop title="PHL Code Club: Blog">
   <Window title="blog">
     <ul>
@@ -20,10 +28,13 @@ const posts = await getPostsIncludingExternal();
                 class="post-title"
                 target={post.external ? "_blank" : undefined}
               >
-                <h1>
+                <h1 class="blog-title">
                   {post.title}
                   {post.external && (
-                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                    <FontAwesomeIcon
+                      class="blog-icon"
+                      icon={faArrowUpRightFromSquare}
+                    />
                   )}
                 </h1>
               </a>
