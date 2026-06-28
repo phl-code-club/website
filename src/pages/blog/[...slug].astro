@@ -1,5 +1,4 @@
 ---
-import "98.css";
 import Desktop from "../../layouts/desktop.astro";
 import Window from "../../components/Window.astro";
 import { getCollection } from "astro:content";
@@ -132,7 +131,9 @@ const posts = await getPostsIncludingExternal();
           href={`/organizers/${author.id}`}>{author.data.name}</a
         >
       </p>
-      <Content />
+      <article>
+        <Content />
+      </article>
       <div class="social-line">
         Follow us:
         <a href="https://lu.ma/phlcodeclub" target="_blank" rel="noreferrer">

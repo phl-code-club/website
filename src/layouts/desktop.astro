@@ -9,7 +9,7 @@ import sponsor from "../assets/sponsor.png";
 import blog from "../assets/wordpad.png";
 import organizers from "../assets/users.png";
 import home from "../assets/computer.png";
-import { Image } from "astro:assets";
+import { Image, Font } from "astro:assets";
 
 interface Props {
   title: string;
@@ -26,6 +26,7 @@ const { title, description } = Astro.props;
     {description && <meta name="description" content={description} />}
     <title>{title}</title>
     <slot name="head" />
+    <Font cssVariable="--font-space-grotesk" />
     <style is:global>
       :root {
         --colors-purple: #4a306d;
@@ -39,6 +40,21 @@ const { title, description } = Astro.props;
         --colors-black: #000;
         --colors-white: #fff;
         --colors-gray: #262626;
+      }
+
+      /* This is really bad lol */
+      p,
+      a,
+      span {
+        font-family: var(--space-grotesk) !important;
+      }
+      /* So is this RIP */
+      .icon-text {
+        font-family: "Pixelated MS Sans Serif" !important;
+      }
+
+      h1 {
+        font-size: 4rem;
       }
 
       @media (prefers-color-scheme: light) {
